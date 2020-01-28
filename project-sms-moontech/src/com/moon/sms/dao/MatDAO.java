@@ -31,15 +31,25 @@ public class MatDAO {
 	
 	public void regist(MatVO mVo) throws Exception{
 		
-		String sql = "INSERT INTO TB_MAT VALUES(
+		String sql = "INSERT INTO TB_MAT(MAT_SQ, MAT_NM, MAT_SIZE, STAN_PRICE, WEIGHT, PICTURE) "
+				+ "VALUES(?, ?, ? , ?, ?, ?)";
+		
+		getParameter("MAT_SQ");
+		
+		W
+		
 	}
 		
 	
 	public MatVO read(int matSq) throws Exception{
 		
+		String sql = "SELECT * FROM TB_MAT WHERE MAT_SQ == ?";
+		
 	}
 	
 	public void modify(MatVO mVo) throws Exception{
+		
+		String sql = "UPDATE TB_MAT SET MAT_SQ = ?, MAT_NM = ?, MAT_SIZE = ?, STAN_PRICE = ? WEIGHT =?, PIRCTURE = ?";
 		
 	}
 	

@@ -32,7 +32,7 @@ public class MatServlet extends HttpServlet {
 
 		String command = request.getParameter("command");
 		
-		System.out.println("BoardServlet에서 요청을 받음을 확인 : "); 
+		System.out.println("MatServlet에서 요청을 받음을 확인 : "); 
 		
 		ActionFactory af = ActionFactory.getInstance();
 		Action action = af.getAction(command);
