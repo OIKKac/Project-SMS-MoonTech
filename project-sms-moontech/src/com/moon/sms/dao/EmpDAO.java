@@ -111,7 +111,7 @@ public class EmpDAO {
 
 	
 	public void delete(int empNo) throws Exception {
-		String sql = "delete emp_Sq where num=?";
+		String sql = "delete tb_emp where emp_no=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -124,7 +124,7 @@ public class EmpDAO {
 		}
 	}
 	public List<EmpVO> listAll() {
-		String sql = "SELECT * FROM TB_EMP ORDER BY EMPNO DESC";
+		String sql = "SELECT * FROM TB_EMP ORDER BY EMP_NO DESC";
 		List<EmpVO> list = new ArrayList<EmpVO>();
 		Connection conn = null;
 		Statement stmt = null;
@@ -173,7 +173,7 @@ private static EmpDAO instance = new EmpDAO();
 	}
 	public int userCheck(int empNo, String pwd){
 		int result = -1;
-		String sql = "select pwd from tb_emp where empNo=?";
+		String sql = "select pwd from tb_emp where emp_No=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -206,7 +206,7 @@ private static EmpDAO instance = new EmpDAO();
 	}
 	public EmpVO getEmp(int empNo){
 		EmpVO eVo = null;
-		String sql = "select * from tb_emp where empNo=?";
+		String sql = "select * from tb_emp where emp_No=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -217,15 +217,15 @@ private static EmpDAO instance = new EmpDAO();
 			rs = pstmt.executeQuery();
 			if (rs.next()){
 				eVo = new EmpVO();
-				eVo.setEmpNo(rs.getInt("empNo"));
-				eVo.setEmpNm(rs.getString("empNm"));
-				eVo.setHp(rs.getString("hp"));
-				eVo.setDeptSq(rs.getInt("deptSq"));
-				eVo.setPosi(rs.getString("posi"));
-				eVo.setAddress(rs.getString("address"));
-				eVo.setPicture(rs.getString("picture"));			
-				eVo.setEmail(rs.getString("email"));
-				eVo.setPwd(rs.getString("pwd"));
+				eVo.setEmpNo(rs.getInt("EMP_NO"));
+				eVo.setEmpNm(rs.getString("EMP_NM"));
+				eVo.setHp(rs.getString("HP"));
+				eVo.setDeptSq(rs.getInt("DEPT_SQ"));
+				eVo.setPosi(rs.getString("POSI"));
+				eVo.setAddress(rs.getString("ADDRESS"));
+				eVo.setPicture(rs.getString("PICTURE"));			
+				eVo.setEmail(rs.getString("EMAIL"));
+				eVo.setPwd(rs.getString("PWD"));
 			}
 		} catch (Exception e){
 			e.printStackTrace();

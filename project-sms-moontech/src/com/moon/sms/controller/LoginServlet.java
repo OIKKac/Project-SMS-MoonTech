@@ -52,24 +52,26 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url = "login.jsp";
 		
-		String i = request.getParameter("empNo");
+		String id = request.getParameter("empNo");
 		String pwd = request.getParameter("pwd");
-		int empNo= Integer.parseInt(i) ;
-		
+		int empNo= Integer.parseInt(id) ;
 		
 		EmpDAO eDao = EmpDAO.getInstance();
 		int result = eDao.userCheck(empNo, pwd);
 		
+		System.out.println("empNo : " + empNo );
+		System.out.println("pwd : " + pwd );
+		
 		if(result == 1) {
-			EmpVO eVo = eDao.getEmp(result);
+			EmpVO eVo = eDao.getEmp(empNo);
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", eVo);
-			request.setAttribute("message", "회원 가입에 성공했습니다.");
+			request.setAttribute("message", "로그인에 성공했습니다.");
 			url = "main.jsp";
 		} else if(result == 0) {
 			request.setAttribute("message", "비밀번호가 맞지 않습니다.");
-		} else if(result == 1) {
-			request.setAttribute("mmssage", "존재하지 않은 회원입니다.");
+		} else if(result == -1) {
+			request.setAttribute("message", "존재하지 않은 회원입니다.");
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
