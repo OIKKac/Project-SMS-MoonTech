@@ -14,8 +14,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.mis.dao.String;
-import com.mis.dto.MatVO;
 import com.moon.sms.dto.MatVO;
 import com.moon.sms.util.DBManager;
 
@@ -39,17 +37,20 @@ public class MatDAO {
 		return conn;		
 	}
 	
-	public void regist(MatVO mVo) throws Exception{
+	public void regist(MatVO mVo) {
 		
 		String sql = "INSERT INTO TB_MAT("
 				+ "MAT_SQ, MAT_NM, MAT_SIZE, STAN_PRICE, WEIGHT, PICTURE) "
 				+ "VALUES(mat_seq.netval, ?, ? , ?, ?, ?)";
+		
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setInt(1, mVo.getMatSq());
 			pstmt.setString(2, mVo.getMatNm());
 			pstmt.setString(3, mVo.getMatSize());
@@ -57,8 +58,11 @@ public class MatDAO {
 			pstmt.setString(5, mVo.getWeight());
 			pstmt.setString(6, mVo.getPicture());
 			pstmt.executeUpdate();
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
 		} finally {
 			DBManager.close(conn, pstmt);
 		}
@@ -98,32 +102,42 @@ public class MatDAO {
 		
 	}
 	
-	public void modify(MatVO mVo) throws Exception{
+	public void modify(MatVO mVo){
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;		
 		
 		String sql = "UPDATE TB_MAT SET "
-				+ "MAT_SQ = ?, MAT_NM = ?, MAT_SIZE = ?, STAN_PRICE = ? WEIGHT =?, PIRCTURE = ?";
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+				+ "MAT_NM = ?, MAT_SIZE = ?, STAN_PRICE = ? WEIGHT =?, PIRCTURE = ?"
+				+ "WHERE MAT_SQ = ?" ;
+
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, mVo.getMatSq());
-			pstmt.setString(2, mVo.getMatNm());
-			pstmt.setString(3, mVo.getMatSize());
-			pstmt.setString(4, mVo.getStanPrice());
-			pstmt.setString(5, mVo.getWeight());
-			pstmt.setString(6, mVo.getPicture());
+			pstmt = conn.prepareStatement(sql);			
+			
+			pstmt.setString(1, mVo.getMatNm());
+			pstmt.setString(2, mVo.getMatSize());
+			pstmt.setString(3, mVo.getStanPrice());
+			pstmt.setString(4, mVo.getWeight());
+			pstmt.setString(5, mVo.getPicture());
+			pstmt.setInt(6, mVo.getMatSq());
+			
 			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(conn, pstmt);
 		}
+		
 
-	}
+	}		
+		
+		
+
 	
-	public void delete(int matSq) throws Exception{
-		String sql = "DELETE MAT WHERE MAT_SQ ?";
+	public void delete(int matSq){
+		String sql = "DELETE TB_MAT WHERE MAT_SQ = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -131,6 +145,7 @@ public class MatDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, matSq);
 			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -154,6 +169,7 @@ public class MatDAO {
 				mVo.setStanPrice(rs.getString("stanPrice"));
 				mVo.setWeight(rs.getString("weight"));
 				mVo.setPicture(rs.getString("picture"));	
+				
 				list.add(mVo);
 			}
 		} catch (SQLException e) {

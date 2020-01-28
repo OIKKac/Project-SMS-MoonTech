@@ -8,6 +8,8 @@ public class MatVO {
 	private String picture;
 	private String stanPrice;
 	private String weight;
+	
+	
 	public int getMatSq() {
 		return matSq;
 	}

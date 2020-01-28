@@ -6,6 +6,7 @@ public class DeptVO {
 	private int deptSq;
 	private String code;
 	private String deptNm;
+
 	public int getDeptSq() {
 		return deptSq;
 	}

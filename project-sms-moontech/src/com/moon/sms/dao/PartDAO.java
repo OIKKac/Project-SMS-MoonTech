@@ -8,7 +8,7 @@ public class PartDAO {
 		
 	}
 
-	public PartVO read(int pSq) throws Exception{
+	public PartVO read(PartVO pSq) throws Exception{
 		
 		
 		return pSq;
