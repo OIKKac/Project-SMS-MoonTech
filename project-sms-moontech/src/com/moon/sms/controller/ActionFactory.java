@@ -1,6 +1,7 @@
 package com.moon.sms.controller;
 
 import com.moon.sms.controller.action.Action;
+import com.moon.sms.controller.action.MatListAction;
 
 public class ActionFactory {
 	private static ActionFactory instance = new ActionFactory();
@@ -19,6 +20,9 @@ public class ActionFactory {
 		
 		if(command.equals("mat_list")) {
 			action = new MatListAction();
+			
+			}
+		return action;
 		}
 		
 		/*

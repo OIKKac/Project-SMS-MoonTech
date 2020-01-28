@@ -8,24 +8,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.moon.sms.dao.MatDAO;
-import com.moon.sms.dto.MatVO;
+import com.mis.dao.BoardDAO;
+import com.mis.dto.BoardVO;
 
 
-
-
-public class MatListAction implements Action {
+public class BoardListAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-		String url = "/mat/matList.jsp";
-		MatDAO mDao = MatDAO.getInstance();
-		
-		List<MatVO> boardList = mDao.listAll();
-		
+		String url = "/board/boardList.jsp";
+		BoardDAO bDao = BoardDAO.getInstance();
+		List<BoardVO> boardList = bDao.selectAllBoards();
 		request.setAttribute("boardList", boardList);
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 				
