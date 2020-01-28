@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface Action {
 	
-	public void execute(HttpServletRequest request, HttpServletResponse responese)throws ServletException, IOException;
+	public void execute(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException;
 	
 	
 }

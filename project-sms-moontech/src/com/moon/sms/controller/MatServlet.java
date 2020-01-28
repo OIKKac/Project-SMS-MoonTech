@@ -1,7 +1,6 @@
 package com.moon.sms.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +15,7 @@ import com.moon.sms.controller.action.Action;
 @WebServlet("/mat.do")
 public class MatServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+   
     public MatServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -29,17 +25,17 @@ public class MatServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		String command = request.getParameter("command");
 		
-		System.out.println("MatServlet에서 요청을 받음을 확인 : "); 
+		MatActionFactory maf = MatActionFactory.getInstance();
 		
-		ActionFactory af = ActionFactory.getInstance();
-		Action  action = af.getAction(command);
+		Action action = maf.getAction(command);
 		
 		if(action != null) {
 			action.execute(request, response);
 		}
+		
 		
 	}
 
@@ -47,6 +43,7 @@ public class MatServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
