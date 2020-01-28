@@ -8,6 +8,7 @@ public class EmpVO {
 	private String empNm;
 	private String pwd;
 	private String hp;
+	
 	private String posi;
 	private String address;
 	private String picture;
