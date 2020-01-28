@@ -8,6 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import com.moon.sms.dto.EmpVO;
 import com.moon.sms.util.DBManager;
 
@@ -46,7 +50,7 @@ public class EmpDAO {
 
 	public EmpVO read(int empNo) throws Exception {
 		String sql = "SELECT * FROM TB_EMP WHERE EMP_NO == ?";
-		EmpVO pVo = null;
+		EmpVO eVo = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -57,16 +61,16 @@ public class EmpDAO {
 			pstmt.setInt(1, empNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				pVo = new EmpVO();
-				pVo.setEmpNo(rs.getInt("empNo"));
-				pVo.setEmpNm(rs.getString("empNm"));
-				pVo.setHp(rs.getString("hp"));
-				pVo.setDeptSq(rs.getInt("deptSq"));
-				pVo.setPosi(rs.getString("posi"));
-				pVo.setAddress(rs.getString("address"));
-				pVo.setPicture(rs.getString("picture"));			
-				pVo.setEmail(rs.getString("email"));
-				pVo.setPwd(rs.getString("pwd"));
+				eVo = new EmpVO();
+				eVo.setEmpNo(rs.getInt("empNo"));
+				eVo.setEmpNm(rs.getString("empNm"));
+				eVo.setHp(rs.getString("hp"));
+				eVo.setDeptSq(rs.getInt("deptSq"));
+				eVo.setPosi(rs.getString("posi"));
+				eVo.setAddress(rs.getString("address"));
+				eVo.setPicture(rs.getString("picture"));			
+				eVo.setEmail(rs.getString("email"));
+				eVo.setPwd(rs.getString("pwd"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,12 +78,12 @@ public class EmpDAO {
 			DBManager.close(conn, pstmt, rs);
 		}		
 		
-		return pVo;
+		return eVo;
 		
 	}
 
 	
-	public void modify(EmpVO pVo) throws Exception {
+	public void modify(EmpVO eVo) throws Exception {
 		String sql = "UPDATE TB_EMP SET "
 				+ "EMP_NO = ?, EMP_NM = ?, HP = ?, DEPT_SQ = ? , POSI =?, ADDRESS = ?, picture=?, EMAIL=? , PWD=? ";
 		Connection conn = null;
@@ -87,15 +91,15 @@ public class EmpDAO {
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, pVo.getEmpNo());
-			pstmt.setString(2, pVo.getEmpNm());
-			pstmt.setString(3, pVo.getHp());
-			pstmt.setInt(4, pVo.getDeptSq());
-			pstmt.setString(5, pVo.getPosi());
-			pstmt.setString(6, pVo.getAddress());
-			pstmt.setString(7, pVo.getPicture());
-			pstmt.setString(8, pVo.getEmail());
-			pstmt.setString(9, pVo.getPwd());
+			pstmt.setInt(1, eVo.getEmpNo());
+			pstmt.setString(2, eVo.getEmpNm());
+			pstmt.setString(3, eVo.getHp());
+			pstmt.setInt(4, eVo.getDeptSq());
+			pstmt.setString(5, eVo.getPosi());
+			pstmt.setString(6, eVo.getAddress());
+			pstmt.setString(7, eVo.getPicture());
+			pstmt.setString(8, eVo.getEmail());
+			pstmt.setString(9, eVo.getPwd());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -130,17 +134,17 @@ public class EmpDAO {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				EmpVO pVo = new EmpVO();
-				pVo.setEmpNo(rs.getInt("empNo"));
-				pVo.setEmpNm(rs.getString("empNm"));
-				pVo.setHp(rs.getString("hp"));
-				pVo.setDeptSq(rs.getInt("deptSq"));
-				pVo.setPosi(rs.getString("posi"));
-				pVo.setAddress(rs.getString("address"));
-				pVo.setPicture(rs.getString("picture"));			
-				pVo.setEmail(rs.getString("email"));
-				pVo.setPwd(rs.getString("pwd"));
-				list.add(pVo);
+				EmpVO eVo = new EmpVO();
+				eVo.setEmpNo(rs.getInt("empNo"));
+				eVo.setEmpNm(rs.getString("empNm"));
+				eVo.setHp(rs.getString("hp"));
+				eVo.setDeptSq(rs.getInt("deptSq"));
+				eVo.setPosi(rs.getString("posi"));
+				eVo.setAddress(rs.getString("address"));
+				eVo.setPicture(rs.getString("picture"));			
+				eVo.setEmail(rs.getString("email"));
+				eVo.setPwd(rs.getString("pwd"));
+				list.add(eVo);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -149,5 +153,94 @@ public class EmpDAO {
 		}
 		return list;
 	}
+	
+	private EmpDAO() {
 		
 	}
+	
+private static EmpDAO instance = new EmpDAO();
+	
+	public static EmpDAO getInstance(){
+		return instance;
+	}
+	public Connection getConnection() throws Exception{
+		Connection conn = null;
+		Context initContext = new InitialContext();
+		Context envContext = (Context) initContext.lookup("java:/comp/env");
+		DataSource ds = (DataSource) envContext.lookup("jdbc/myoracle");
+		conn = ds.getConnection();
+		return conn;
+	}
+	public int userCheck(int empNo, String pwd){
+		int result = -1;
+		String sql = "select pwd from tb_emp where empNo=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, empNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getString("pwd")!=null && rs.getString("pwd").equals(pwd)){
+					result = 1;
+				} else {
+					result = 0;
+				}
+			} else{
+				result = -1;
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	public EmpVO getEmp(int empNo){
+		EmpVO eVo = null;
+		String sql = "select * from tb_emp where empNo=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, empNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()){
+				eVo = new EmpVO();
+				eVo.setEmpNo(rs.getInt("empNo"));
+				eVo.setEmpNm(rs.getString("empNm"));
+				eVo.setHp(rs.getString("hp"));
+				eVo.setDeptSq(rs.getInt("deptSq"));
+				eVo.setPosi(rs.getString("posi"));
+				eVo.setAddress(rs.getString("address"));
+				eVo.setPicture(rs.getString("picture"));			
+				eVo.setEmail(rs.getString("email"));
+				eVo.setPwd(rs.getString("pwd"));
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+		return eVo;
+	
+	}
+	
+	
+}
