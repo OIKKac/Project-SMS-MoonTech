@@ -9,17 +9,36 @@
 <title>재료</title>
 </head>
 <body>
+
+
+	<!-- <div onclick = "location.href='mat.do?command=mat_update_form'">
+		 -->
 		<table>
 			<thead>
 				<tr>
 					<td>재료번호</td>
-					<td>재료명</td>				
+					<td>재료명</td>
+					<td>사이즈</td>
+					<td>무게</td>
+					<td>표준가격</td>		
 				</tr>
 			</thead>
 			
 			<tbody>
-				
+				<c:forEach items = "${matList}" var = "mat">
+					<tr>
+						<td>${mat.matSq}</td>
+						<td><a href = "mat.do?command=mat_update_form&matSq=${mat.matSq}">${mat.matNm}</a></td>
+						<td>${mat.matSize}</td>
+						<td>${mat.weight}</td>
+						<td>${mat.stanPrice}</td>
+					</tr>
+				</c:forEach>
 			</tbody>
+		</table>	
+			
+			
+<!-- 			
 			<tr>
 				<td>재료번호</td>
 				<td><input type = "text" name = "matSq" value = "${mat.matSQ}" disabled/></td>
@@ -44,7 +63,7 @@
 	
 	
 	<a href = "mat.do?command=mat_write_form">asdf</a>
-	
+ -->	
 	
 </body>
 </html>

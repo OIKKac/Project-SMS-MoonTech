@@ -72,8 +72,9 @@ public class MatDAO {
 	
 	public MatVO read(int matSq){
 		
-		String sql = "SELECT * FROM TB_MAT WHERE MAT_SQ == ?";
+		String sql = "SELECT * FROM TB_MAT WHERE MAT_SQ = ?";
 		MatVO mVo = null;
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -83,14 +84,15 @@ public class MatDAO {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, matSq);
 			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
 				mVo = new MatVO();
-				mVo.setMatSq(rs.getInt("matSq"));
-				mVo.setMatNm(rs.getString("matNm"));
-				mVo.setMatSize(rs.getString("matSize"));
-				mVo.setStanPrice(rs.getString("stanPrice"));
-				mVo.setWeight(rs.getString("weight"));
-				mVo.setPicture(rs.getString("picture"));				
+				mVo.setMatSq(rs.getInt("MAT_SQ"));
+				mVo.setMatNm(rs.getString("MAT_NM"));
+				mVo.setMatSize(rs.getString("MAT_SIZE"));
+				mVo.setStanPrice(rs.getString("STAN_PRICE"));
+				mVo.setWeight(rs.getString("WEIGHT"));
+				mVo.setPicture(rs.getString("PICTURE"));				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,8 +109,9 @@ public class MatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;		
 		
+		
 		String sql = "UPDATE TB_MAT SET "
-				+ "MAT_NM = ?, MAT_SIZE = ?, STAN_PRICE = ? WEIGHT =?, PIRCTURE = ?"
+				+ "MAT_NM = ?, MAT_SIZE = ?, STAN_PRICE = ? WEIGHT =?, PICTURE = ?"
 				+ "WHERE MAT_SQ = ?" ;
 
 		try {
@@ -152,7 +155,7 @@ public class MatDAO {
 	}
 	
 	public List<MatVO> listAll() {
-		String sql = "SELECT * FROM TB_MAT ORDER BY MATSQ DESC";
+		String sql = "SELECT * FROM TB_MAT ORDER BY MAT_SQ DESC";
 		List<MatVO> list = new ArrayList<MatVO>();
 		Connection conn = null;
 		Statement stmt = null;
@@ -163,12 +166,12 @@ public class MatDAO {
 			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				MatVO mVo = new MatVO();
-				mVo.setMatSq(rs.getInt("matSq"));
-				mVo.setMatNm(rs.getString("matNm"));
-				mVo.setMatSize(rs.getString("matSize"));
-				mVo.setStanPrice(rs.getString("stanPrice"));
-				mVo.setWeight(rs.getString("weight"));
-				mVo.setPicture(rs.getString("picture"));	
+				mVo.setMatSq(rs.getInt("MAT_SQ"));
+				mVo.setMatNm(rs.getString("MAT_NM"));
+				mVo.setMatSize(rs.getString("MAT_SIZE"));
+				mVo.setStanPrice(rs.getString("STAN_PRICE"));
+				mVo.setWeight(rs.getString("WEIGHT"));
+				mVo.setPicture(rs.getString("PICTURE"));	
 				
 				list.add(mVo);
 			}

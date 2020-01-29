@@ -20,6 +20,8 @@ public class MatUpdateFormAction implements Action {
 		String i = request.getParameter("matSq");
 		int matSq = Integer.parseInt(i);
 		
+		System.out.println("modify matSq :" + matSq);
+		
 		MatDAO mDao = MatDAO.getInstance();
 		MatVO mVo = mDao.read(matSq);
 		
