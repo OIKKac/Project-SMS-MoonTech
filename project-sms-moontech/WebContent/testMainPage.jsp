@@ -11,8 +11,11 @@
 
 <a href = "mat.do?command=mat_update">matUpdate</a><br>
 
+<a href = "mat.do?command=mat_write_form">regist</a><br>
+
 <a href = "emp.do?command=emp_list">Emp list</a><br>
 
 <a href = "emp.do?command=emp_update">empUpdate</a>
+
 </body>
 </html>

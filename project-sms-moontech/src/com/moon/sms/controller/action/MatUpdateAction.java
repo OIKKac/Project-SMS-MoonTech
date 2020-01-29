@@ -16,18 +16,15 @@ public class MatUpdateAction implements Action {
 		
 		MatVO mVo = new MatVO();
 		
-		String i = request.getParameter("matSq");
-		int matSq = Integer.parseInt(i);
-		
-		mVo.setMatSq(matSq);
+		mVo.setMatSq(Integer.parseInt(request.getParameter("matSq")));
 		mVo.setMatNm(request.getParameter("matNm"));
 		mVo.setMatSize(request.getParameter("matSize"));
 		mVo.setStanPrice(request.getParameter("stanPrice"));
 		mVo.setWeight(request.getParameter("weight"));
 		mVo.setPicture(request.getParameter("picture"));
 		
-		MatDAO bDao = MatDAO.getInstance();
-		bDao.modify(mVo);
+		MatDAO mDao = MatDAO.getInstance();
+		mDao.modify(mVo);
 		
 		new MatListAction().execute(request, response);
 	}
