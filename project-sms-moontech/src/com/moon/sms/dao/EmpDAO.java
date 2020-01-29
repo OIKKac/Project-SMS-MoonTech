@@ -22,7 +22,7 @@ public class EmpDAO {
 	
 	public void regist(EmpVO eVo) throws Exception {
 		String sql = "INSERT INTO TB_EMP("
-				+ "emp_no, emp_nm, hp, dept_sq, posi, address, picture, email, pwd) "
+				+ "EMP_NO, EMP_MN, HP, DEPT_SQ, POSI, ADDRESS, PICTURE, EMAIL, PWD) "
 				+ "VALUES(9999, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -111,7 +111,7 @@ public class EmpDAO {
 
 	
 	public void delete(int empNo) throws Exception {
-		String sql = "delete tb_emp where emp_no=?";
+		String sql = "DELETE TB_EMP WHERE EMP_NO=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -173,7 +173,7 @@ private static EmpDAO instance = new EmpDAO();
 	}
 	public int userCheck(int empNo, String pwd){
 		int result = -1;
-		String sql = "select pwd from tb_emp where emp_No=?";
+		String sql = "SELECT PWD FROM TB_EMP WHERE EMP_NO=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -206,7 +206,7 @@ private static EmpDAO instance = new EmpDAO();
 	}
 	public EmpVO getEmp(int empNo){
 		EmpVO eVo = null;
-		String sql = "select * from tb_emp where emp_No=?";
+		String sql = "SELECT * FROM TB_EMP WHERE EMP_NO=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

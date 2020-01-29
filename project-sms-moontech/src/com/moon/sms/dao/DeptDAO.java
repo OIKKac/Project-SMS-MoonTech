@@ -18,9 +18,9 @@ public class DeptDAO {
 
 
 	public void regist(DeptVO dVo) throws Exception {
-		String sql = "insert into tb_dept("
-				+ "dept_sq, code, deptNm,) "
-				+ "values(?, ?, ?,)";
+		String sql = "INSERT INTO TB_DEPT("
+				+ "DEPT_SQ, CODE, DEPTNM,) "
+				+ "VALUES (?, ?, ?,)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -89,7 +89,7 @@ public class DeptDAO {
 
 
 	public void delete(int deptSq) throws Exception {
-		String sql = "delete tb_dept where num=?";
+		String sql = "DELETE TB_DEPT WHERE DEPT_SQ=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -102,7 +102,7 @@ public class DeptDAO {
 		}
 	}
 	public List<DeptVO> listAll() {
-		String sql = "SELECT * FROM TB_EMP ORDER BY EMPNO DESC";
+		String sql = "SELECT * FROM TB_DEPT ORDER BY DEPT_SQ DESC";
 		List<DeptVO> list = new ArrayList<DeptVO>();
 		Connection conn = null;
 		Statement stmt = null;
