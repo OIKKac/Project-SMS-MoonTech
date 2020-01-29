@@ -14,11 +14,10 @@ public class MatDeleteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		String i = request.getParameter("matSq");
-		int matSq = Integer.parseInt(i);
-		
+		int matSq = Integer.parseInt(request.getParameter("matSq"));
 		MatDAO mDao = MatDAO.getInstance();
+		
+		System.out.println("Delete matSq : " + matSq);
 		
 		mDao.delete(matSq);
 		

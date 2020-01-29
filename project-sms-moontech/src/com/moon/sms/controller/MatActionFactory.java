@@ -27,6 +27,7 @@ public class MatActionFactory {
 		
 		System.out.println("ActionFactory :" + command);
 		
+		
 		if (command.equals("mat_list")) {
 			action = new MatListAction();
 		} else if (command.equals("mat_write_form")) {
