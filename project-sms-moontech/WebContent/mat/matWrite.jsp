@@ -10,7 +10,33 @@
 <script type="text/javascript" src="script/board.js"></script>
 </head>
 <body>
-	
+	<form method= "post"  action = "mat.do">
+		<input type = "hidden" name = "command" value = "mat_write">		
+		<table>
+			<tr>
+				<td>재료번호</td>
+				<td><input type = "text" name = "matSq" value = "${matSq}" /></td>
+			</tr>
+			<tr>
+				<td>재료명</td>
+				<td><input type = "text" name = "matNm" value = "${mat.matNm}"/></td>
+			</tr>
+			<tr>	
+				<td>사이즈</td>
+				<td><input type = "text" name = "matSize" value = "${mat.matSize}"/></td>	
+			</tr>	
+			<tr>
+				<td>무게</td>
+				<td><input type = "text" name = "weight" value = "${mat.weight}"/></td>
+			</tr>
+			<tr>
+				<td>표준가격</td>
+				<td><input type = "text" name = "stanPrice" value = "${mat.stanPrice}"/></td>
+			</tr>
+		</table>
+		<input type = "submit" value = "등록" >
+		<input type = "button" value = "취소" onclick = "location.href='../mat.do?command=mat_list'">
+	</form>
 <!-- 
 	<div id="wrap" align="center">
 		<h1>게시글 등록</h1>

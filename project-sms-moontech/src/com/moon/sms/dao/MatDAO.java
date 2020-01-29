@@ -37,11 +37,48 @@ public class MatDAO {
 		return conn;		
 	}
 	
+	public int nextvalMatSq() {
+		
+		
+		String sql = "SELECT * FROM "
+					+"(SELECT MAT_SQ FROM TB_MAT ORDER BY ROWNUM DESC) "
+					+"WHERE ROWNUM = 1";
+		
+		Integer nextvalMatSq = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				nextvalMatSq = (rs.getInt("MAT_SQ"));
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}		
+		
+		return nextvalMatSq+1;
+		
+	}	
+
+		
+
+	
 	public void regist(MatVO mVo) {
 		
 		String sql = "INSERT INTO TB_MAT("
 				+ "MAT_SQ, MAT_NM, MAT_SIZE, STAN_PRICE, WEIGHT, PICTURE) "
-				+ "VALUES(mat_seq.netval, ?, ? , ?, ?, ?)";
+				+ "VALUES(?, ?, ? , ?, ?, ?)";
 		
 		
 		Connection conn = null;
@@ -110,9 +147,10 @@ public class MatDAO {
 		PreparedStatement pstmt = null;		
 		
 		
-		String sql = "UPDATE TB_MAT SET "
-				+ "MAT_NM = ?, MAT_SIZE = ?, STAN_PRICE = ? WEIGHT =?, PICTURE = ?"
-				+ "WHERE MAT_SQ = ?" ;
+		
+		String sql = "UPDATE TB_MAT SET " 
+					+"MAT_NM = ?, MAT_SIZE = ?, STAN_PRICE = ?, WEIGHT = ?, picture = ? "
+					+"WHERE MAT_SQ = ?";
 
 		try {
 			conn = DBManager.getConnection();

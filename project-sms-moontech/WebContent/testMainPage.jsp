@@ -9,6 +9,9 @@
 
 <a href = "mat.do?command=mat_list">Mat list</a><br>
 
-<a href = "mat.do?command=mat_update">matUpdate</a>
+<a href = "mat.do?command=mat_update">matUpdate</a><br>
+
+<a href = "mat.do?command=mat_write_form">regist</a><br>
+
 </body>
 </html>
