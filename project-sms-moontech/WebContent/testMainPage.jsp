@@ -7,8 +7,8 @@
 </head>
 <body>
 
-<a href = "mat.do?command=mat_list">asdfasf</a>
+<a href = "mat.do?command=mat_list">Mat list</a><br>
 
-
+<a href = "mat.do?command=mat_update">matUpdate</a>
 </body>
 </html>
