@@ -38,7 +38,7 @@ public class EmpDAO {
 	public void regist(EmpVO eVo) {
 		String sql = "INSERT INTO TB_EMP("
 				+ "emp_no, emp_nm, hp, dept_sq, posi, address, picture, email, pwd) "
-				+ "VALUES(9999, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -100,21 +100,22 @@ public class EmpDAO {
 	
 	public void modify(EmpVO eVo)  {
 		String sql = "UPDATE TB_EMP SET "
-				+ "EMP_NO = ?, EMP_NM = ?, HP = ?, DEPT_SQ = ? , POSI =?, ADDRESS = ?, picture=?, EMAIL=? , PWD=? ";
+				+ "EMP_NM = ?, HP = ?, DEPT_SQ = ? , POSI =?, ADDRESS = ?, picture=?, EMAIL=? , PWD=? "
+				+ "WHERE EMP_NO =?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, eVo.getEmpNo());
-			pstmt.setString(2, eVo.getEmpNm());
-			pstmt.setString(3, eVo.getHp());
-			pstmt.setInt(4, eVo.getDeptSq());
-			pstmt.setString(5, eVo.getPosi());
-			pstmt.setString(6, eVo.getAddress());
-			pstmt.setString(7, eVo.getPicture());
-			pstmt.setString(8, eVo.getEmail());
-			pstmt.setString(9, eVo.getPwd());
+			pstmt.setString(1, eVo.getEmpNm());
+			pstmt.setString(2, eVo.getHp());
+			pstmt.setInt(3, eVo.getDeptSq());
+			pstmt.setString(4, eVo.getPosi());
+			pstmt.setString(5, eVo.getAddress());
+			pstmt.setString(6, eVo.getPicture());
+			pstmt.setString(7, eVo.getEmail());
+			pstmt.setString(8, eVo.getPwd());
+			pstmt.setInt(9, eVo.getEmpNo());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -125,14 +126,14 @@ public class EmpDAO {
 	}
 
 	
-	public void delete(int empNo)  {
+	public void delete(String empNo)  {
 		String sql = "delete TB_EMP where EMP_NO =?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, empNo);
+			pstmt.setString(1, empNo);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

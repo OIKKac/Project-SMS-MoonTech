@@ -13,9 +13,14 @@
 
 <a href = "mat.do?command=mat_write_form">regist</a><br>
 
+<a href = "emp.do?command=emp_write_form">emp regist</a><br>
+
 <a href = "emp.do?command=emp_list">Emp list</a><br>
 
-<a href = "emp.do?command=emp_update">empUpdate</a>
+<a href = "dept.do?command=dept_list">dept list</a><br>
 
+<a href = "dept.do?command=dept_write_form">dept regist</a><br>
+
+<a href = "dept.do?command=dept_select">dept select</a><br>
 </body>
 </html>

@@ -1,35 +1,32 @@
 package com.moon.sms.controller.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.moon.sms.controller.action.Action;
-import com.moon.sms.dao.EmpDAO;
-import com.moon.sms.dto.EmpVO;
+import com.moon.sms.dao.DeptDAO;
+import com.moon.sms.dto.DeptVO;
 
 
-public class EmpUpdateFormAction implements Action {
+
+public class DeptListAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/emp/empUpdate.jsp";
-		String i = request.getParameter("empNo");
-		int empNo = Integer.parseInt(i);
+		String url = "/dept/deptList.jsp";
+		DeptDAO dDao = DeptDAO.getInstance();
 		
-		System.out.println("modify empNo :" + empNo);
+		List<DeptVO> deptList = dDao.listAll();
+		System.out.println("deptList : " + deptList);
 		
-		EmpDAO eDao = EmpDAO.getInstance();
-		EmpVO eVo = eDao.read(empNo);
-		
-		request.setAttribute("emp", eVo);
-		System.out.println("eVo : " + eVo);
+		request.setAttribute("deptList", deptList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-
+				
 	}
 }

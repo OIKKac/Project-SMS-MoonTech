@@ -10,48 +10,16 @@
 <script type="text/javascript" src="script/board.js"></script>
 </head>
 <body>
-	<form method= "post"  action = "emp.do">
-		<input type = "hidden" name = "command" value = "emp_write">		
+	<form method= "post"  action = "dept.do">
+		<input type = "hidden" name = "command" value = "dept_write">		
 		<table>
 			<tr>
-				<td>직원번호</td>
-				<td><input type = "text"  name = "empNo"  /></td>
-			</tr>
-			<tr>
-				<td>직원명</td>
-				<td><input type = "text"  name = "empNm" /></td>
-			</tr>
-			<tr>	
-				<td>전화번호</td>
-				<td><input type = "text"  name = "hp" /></td>	
-			</tr>	
-			<tr>
 				<td>부서명</td>
-				<td><input type = "text"  name = "deptSq" /></td>
-			</tr>
-			<tr>
-				<td>직급</td>
-				<td><input type = "text"  name = "posi" /></td>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<td><input type = "text"  name = "address" /></td>
-			</tr>
-			<tr>
-				<td>사진</td>
-				<td><input type = "text"  name = "picture" /></td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td><input type = "text"  name = "email" /></td>
-			</tr>
-			<tr>
-				<td>비밀번호</td>
-				<td><input type = "text" name = "pwd" /></td>
-			</tr>
+				<td><input type = "text"  name = "deptNm" /></td>
+			</tr>	
 		</table>
 		<input type = "submit" value = "등록" >
-		<input type = "button" value = "취소" onclick = "location.href='../emp.do?command=emp_list'">
+		<input type = "button" value = "취소" onclick = "location.href='../dept.do?command=dept_list'">
 	</form>
 <!-- 
 	<div id="wrap" align="center">

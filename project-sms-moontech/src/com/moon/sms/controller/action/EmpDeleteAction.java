@@ -13,8 +13,10 @@ public class EmpDeleteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-			String i = request.getParameter("empNo");
-			int empNo = Integer.parseInt(i);
+			System.out.println("EmpDeleteAction//////////");
+			String empNo = request.getParameter("empNo");
+			System.out.println("empNo : " + empNo);
+			
 			
 			EmpDAO eDao = EmpDAO.getInstance();
 			

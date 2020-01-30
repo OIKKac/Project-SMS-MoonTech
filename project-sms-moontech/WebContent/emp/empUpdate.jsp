@@ -14,7 +14,7 @@
 			<tr>
 				<td>직원번호</td>
 				<td><input type="text" name="empNo" value="${emp.empNo}"
-					disabled /></td>
+					readonly /></td>
 			</tr>
 			<tr>
 				<td>직원명</td>
@@ -26,15 +26,15 @@
 			</tr>
 			<tr>
 				<td>부서명</td>
-				<td><input type="text" name="deptSq" value="${emp.deptSq}" /></td>
+				<td><input type="text" name="deptSq"  value="${emp.deptSq}" /></td>
 			</tr>
 			<tr>
 				<td>계급</td>
-				<td><input type="text" name="posi" value="${emp.posi}" /></td>
+				<td><input type="text" name="posi"  value="${emp.posi}" /></td>
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td><input type="text" name="address" value="${emp.address}" /></td>
+				<td><input type="text" name="address"  value="${emp.address}" /></td>
 			</tr>
 			<tr>
 				<td>사진</td>
@@ -42,15 +42,16 @@
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td><input type="text" name="email" value="${emp.email}" /></td>
+				<td><input type="text" name="email"  value="${emp.email}" /></td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="text" name="pwd" value="${emp.pwd}" /></td>
+				<td><input type="password" name="pwd"  value="${emp.pwd}" /></td>
 			</tr>
 		</table>
 		
-		<input type="submit" value="수정" onclick = "return emptyCheck()" >
+		<input type="submit" value="수정" >
+		<input type="button" value="삭제"  onclick=  "location.href='./emp.do?command=emp_delete&empNo=${emp.empNo}'">
 	</form>
 
 
