@@ -11,6 +11,10 @@ import com.moon.sms.dto.MatInVO;
 
 public class MatInDAO {
 	
+	
+	
+	
+	
 	private static MatDAO instance = new MatDAO();
 	public static  MatDAO getInstance() {
 		return instance;
@@ -28,12 +32,14 @@ public class MatInDAO {
 	
 	public void regist(MatInVO mIVo) {
 		
+
+
+		
 	}
 	
-	public MatInVO read(int inSq) {
+	public void read(int inSq) {
 		
-		
-		return MatInVO;
+
 	}
 
 	public void delete(int inSq) {

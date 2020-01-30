@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<% 
+String empNo = null; 
+
+    if (empNo == null ) {
+    	System.out.println("value is null");
+        response.sendRedirect("login.do"); 
+    }
+%>
+
 	<a href="login.do"> 로그인 페이지로 이동 </a>
 </body>
 </html>
