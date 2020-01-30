@@ -9,7 +9,7 @@ public class PartVO {
 	private String weight;
 	private String picture;
 	private String stanPrice;
-	private String matSq;
+	private int matSq;
 	
 	
 	public int getPartSq() {
@@ -48,10 +48,10 @@ public class PartVO {
 	public void setStanPrice(String stanPrice) {
 		this.stanPrice = stanPrice;
 	}
-	public String getMatSq() {
+	public int getMatSq() {
 		return matSq;
 	}
-	public void setMatSq(String matSq) {
+	public void setMatSq(int matSq) {
 		this.matSq = matSq;
 	}
 	@Override
@@ -60,6 +60,7 @@ public class PartVO {
 				+ ", picture=" + picture + ", stanPrice=" + stanPrice + ", matSq=" + matSq + "]";
 	}
 	
+
 	
 
 }
