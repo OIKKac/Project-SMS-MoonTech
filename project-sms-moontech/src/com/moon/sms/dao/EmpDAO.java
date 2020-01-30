@@ -169,5 +169,74 @@ public class EmpDAO {
 		}
 		return list;
 	}
+	public int userCheck(int empNo, String pwd){
+		int result = -1;
+		String sql = "select pwd from tb_emp where emp_No=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, empNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				if(rs.getString("pwd")!=null && rs.getString("pwd").equals(pwd)){
+					result = 1;
+				} else {
+					result = 0;
+				}
+			} else{
+				result = -1;
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+	public EmpVO getEmp(int empNo){
+		EmpVO eVo = null;
+		String sql = "select * from tb_emp where emp_No=?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try{
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, empNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()){
+				eVo = new EmpVO();
+				eVo.setEmpNo(rs.getInt("emp_No"));
+				eVo.setEmpNm(rs.getString("emp_Nm"));
+				eVo.setHp(rs.getString("hp"));
+				eVo.setDeptSq(rs.getInt("dept_Sq"));
+				eVo.setPosi(rs.getString("posi"));
+				eVo.setAddress(rs.getString("address"));
+				eVo.setPicture(rs.getString("picture"));
+				eVo.setEmail(rs.getString("email"));
+				eVo.setPwd(rs.getString("pwd"));
+			}
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally{
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+		return eVo;
+	}
 		
 	}
