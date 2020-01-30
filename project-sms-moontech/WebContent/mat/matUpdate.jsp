@@ -10,13 +10,17 @@
 <script type="text/javascript" src="script/board.js"></script>
 </head>
 <body>
+
 	<input type = "button" value = "삭제" onclick = "location.href='mat.do?command=mat_delete&matSq=${mat.matSq}'">
+
 	<form method= "post" name = "frm" action = "mat.do">
 		<input type = "hidden" name = "command" value = "mat_update">		
 		<table>
 			<tr>
 				<td>재료번호</td>
+
 				<td><input type = "text" name = "matSq" value = "${mat.matSq}" /></td>
+
 			</tr>
 			<tr>
 				<td>재료명</td>

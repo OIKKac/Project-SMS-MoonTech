@@ -3,15 +3,14 @@ package com.moon.sms.dto;
 
 public class DeptVO {
 	
-	private String deptSq;
+	private int deptSq;
 	private String code;
 	private String deptNm;
-	
-	
-	public String getDeptSq() {
+
+	public int getDeptSq() {
 		return deptSq;
 	}
-	public void setDeptSq(String deptSq) {
+	public void setDeptSq(int deptSq) {
 		this.deptSq = deptSq;
 	}
 	public String getCode() {
@@ -26,13 +25,11 @@ public class DeptVO {
 	public void setDeptNm(String deptNm) {
 		this.deptNm = deptNm;
 	}
-	
-	
 	@Override
 	public String toString() {
 		return "DeptVO [deptSq=" + deptSq + ", code=" + code + ", deptNm=" + deptNm + "]";
 	}
 	
 	
-
+	
 }
