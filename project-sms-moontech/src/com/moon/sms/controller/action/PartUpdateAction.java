@@ -1,0 +1,42 @@
+package com.moon.sms.controller.action;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.moon.sms.dao.PartDAO;
+import com.moon.sms.dto.PartVO;
+
+
+
+public class PartUpdateAction implements Action {
+
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PartVO pVo = new PartVO();
+		
+		pVo.setPartSq(Integer.parseInt(request.getParameter("partSq")));
+		pVo.setPartNm(request.getParameter("partNm"));
+		pVo.setPartSize(request.getParameter("partSize"));
+		pVo.setWeight(Integer.parseInt(request.getParameter("weight")));
+		pVo.setPicture(request.getParameter("picture"));
+		pVo.setStanPrice(Integer.parseInt(request.getParameter("stanPrice")));
+		pVo.setMatSq(Integer.parseInt(request.getParameter("matSq")));
+		
+		System.out.println("partSq : " + pVo.getPartSq());
+		System.out.println("partNm : " + pVo.getPartNm());
+		System.out.println("partSize : " + pVo.getPartSize());
+		System.out.println("weight : " + pVo.getWeight());
+		System.out.println("picture : " + pVo.getPicture());
+		System.out.println("stanPrice : " + pVo.getStanPrice());
+		System.out.println("matSq : " + pVo.getMatSq());
+		
+		PartDAO pDao = PartDAO.getInstance();
+		pDao.modify(pVo);
+		System.out.println("pVo : " + pVo);
+		
+		new PartListAction().execute(request, response);
+	}
+}

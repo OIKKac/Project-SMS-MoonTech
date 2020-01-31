@@ -4,6 +4,8 @@ package com.moon.sms.controller;
 import com.moon.sms.controller.action.Action;
 import com.moon.sms.controller.action.MatDeleteAction;
 import com.moon.sms.controller.action.MatListAction;
+import com.moon.sms.controller.action.MatSelectAction;
+import com.moon.sms.controller.action.MatSelectFormAction;
 import com.moon.sms.controller.action.MatUpdateAction;
 import com.moon.sms.controller.action.MatUpdateFormAction;
 import com.moon.sms.controller.action.MatViewAction;
@@ -42,8 +44,11 @@ public class MatActionFactory {
 			action = new MatUpdateAction();
 		} else if (command.equals("mat_delete")) {
 			action = new MatDeleteAction();
-		}
-		
+		} else if (command.equals("mat_select_form")) {
+			action = new MatSelectFormAction();
+		} else if (command.equals("mat_select")) {
+			action = new MatSelectAction();
+		} 
 		return action;
 		}
 }

@@ -22,5 +22,10 @@
 <a href = "dept.do?command=dept_write_form">dept regist</a><br>
 
 <a href = "dept.do?command=dept_select">dept select</a><br>
+
+<a href = "part.do?command=part_list">part list</a><br>
+
+<a href = "part.do?command=part_write_form">regist</a><br>
+
 </body>
 </html>

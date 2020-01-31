@@ -6,12 +6,10 @@ public class PartVO {
 	private int partSq;
 	private String partNm;
 	private String partSize;
-	private String weight;
+	private int weight;
 	private String picture;
-	private String stanPrice;
-	private String matSq;
-	
-	
+	private int stanPrice;
+	private int matSq;
 	public int getPartSq() {
 		return partSq;
 	}
@@ -30,10 +28,10 @@ public class PartVO {
 	public void setPartSize(String partSize) {
 		this.partSize = partSize;
 	}
-	public String getWeight() {
+	public int getWeight() {
 		return weight;
 	}
-	public void setWeight(String weight) {
+	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 	public String getPicture() {
@@ -42,16 +40,16 @@ public class PartVO {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public String getStanPrice() {
+	public int getStanPrice() {
 		return stanPrice;
 	}
-	public void setStanPrice(String stanPrice) {
+	public void setStanPrice(int stanPrice) {
 		this.stanPrice = stanPrice;
 	}
-	public String getMatSq() {
+	public int getMatSq() {
 		return matSq;
 	}
-	public void setMatSq(String matSq) {
+	public void setMatSq(int matSq) {
 		this.matSq = matSq;
 	}
 	@Override
@@ -59,7 +57,5 @@ public class PartVO {
 		return "PartVO [partSq=" + partSq + ", partNm=" + partNm + ", partSize=" + partSize + ", weight=" + weight
 				+ ", picture=" + picture + ", stanPrice=" + stanPrice + ", matSq=" + matSq + "]";
 	}
-	
-	
-
+		
 }

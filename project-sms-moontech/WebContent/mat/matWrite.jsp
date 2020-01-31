@@ -15,27 +15,27 @@
 		<table>
 			<tr>
 				<td>재료번호</td>
-				<td><input type = "text" name = "matSq" value = "${matSq}" /></td>
+				<td><input type = "text" name = "matSq"  /></td>
 			</tr>
 			<tr>
 				<td>재료명</td>
-				<td><input type = "text" name = "matNm" value = "${mat.matNm}"/></td>
+				<td><input type = "text" name = "matNm"/></td>
 			</tr>
 			<tr>	
 				<td>사이즈</td>
-				<td><input type = "text" name = "matSize" value = "${mat.matSize}"/></td>	
+				<td><input type = "text" name = "matSize"/></td>	
 			</tr>	
 			<tr>
 				<td>무게</td>
-				<td><input type = "text" name = "weight" value = "${mat.weight}"/></td>
+				<td><input type = "text" name = "weight" /></td>
 			</tr>
 			<tr>
 				<td>표준가격</td>
-				<td><input type = "text" name = "stanPrice" value = "${mat.stanPrice}"/></td>
+				<td><input type = "text" name = "stanPrice" /></td>
 			</tr>
 		</table>
 		<input type = "submit" value = "등록" >
-		<input type = "button" value = "취소" onclick = "location.href='../mat.do?command=mat_list'">
+		<input type = "button" value = "취소" onclick = "location.href='./mat.do?command=mat_list'">
 	</form>
 <!-- 
 	<div id="wrap" align="center">

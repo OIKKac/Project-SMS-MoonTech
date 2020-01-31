@@ -15,6 +15,8 @@ public class MatInDAO {
 	public static  MatDAO getInstance() {
 		return instance;
 	}
+
+	private MatInVO MatInVO;
 	
 	public Connection getConnection() throws Exception {
 		Connection conn = null;

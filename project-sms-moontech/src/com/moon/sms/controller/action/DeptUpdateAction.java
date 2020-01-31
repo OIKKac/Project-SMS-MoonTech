@@ -17,7 +17,7 @@ public class DeptUpdateAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DeptVO dVo = new DeptVO();
 
-		System.out.println("-------------empUpdateAction-------------");
+		System.out.println("-------------DeptUpdateAction-------------");
 		
 		dVo.setDeptSq(Integer.parseInt(request.getParameter("deptSq").trim()));
 		dVo.setDeptNm(request.getParameter("deptNm"));

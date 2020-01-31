@@ -3,6 +3,8 @@ package com.moon.sms.controller;
 import com.moon.sms.controller.action.Action;
 import com.moon.sms.controller.action.DeptDeleteAction;
 import com.moon.sms.controller.action.DeptListAction;
+import com.moon.sms.controller.action.DeptSelectAction;
+import com.moon.sms.controller.action.DeptSelectFormAction;
 import com.moon.sms.controller.action.DeptUpdateAction;
 import com.moon.sms.controller.action.DeptUpdateFormAction;
 import com.moon.sms.controller.action.DeptViewAction;
@@ -41,8 +43,12 @@ public class DeptActionFactory {
 			action = new DeptUpdateAction();
 		} else if (command.equals("dept_delete")) {
 			action = new DeptDeleteAction();
-
+		} else if (command.equals("dept_select_form")) {
+			action = new DeptSelectFormAction();
+		} else if (command.equals("dept_select")) {
+			action = new DeptSelectAction();
 		}
+		
 		return action;
 		}
 }

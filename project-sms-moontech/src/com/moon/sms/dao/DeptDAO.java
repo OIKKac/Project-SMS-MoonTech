@@ -39,8 +39,8 @@ public class DeptDAO {
 
 	public void regist(DeptVO dVo)  {
 		String sql = "insert into tb_dept("
-				+ "dept_Sq, dept_Nm) "
-				+ "values(seq_dept.nextval,  ?)";
+				+ " dept_Sq, dept_Nm) "
+				+ " values(seq_dept.nextval,  ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -86,7 +86,8 @@ public class DeptDAO {
 
 	public void modify(DeptVO dVo) {
 		String sql = "UPDATE TB_DEPT SET "
-				+ " DEPT_NM = ? " + "WHERE DEPT_SQ=?";
+				+ " DEPT_NM = ? " 
+				+ " WHERE DEPT_SQ=?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -141,27 +142,33 @@ public class DeptDAO {
 		return list;
 	}
 	
-	public List<DeptVO> selectDeptNm(String deptNm) {
-		String sql = "select * from tb_dept where dept_nm like '%"+deptNm+"%'";
+	
+	public List<DeptVO> selectNameList(String selectNm) {
+		String sql = "SELECT * FROM TB_DEPT"
+				+ " WHERE DEPT_NM LIKE '%" + selectNm +"%'" 
+				+ " ORDER BY DEPT_SQ DESC";
+		
+		
 		List<DeptVO> list = new ArrayList<DeptVO>();
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rs = null;
+		
 		try {
 			conn = DBManager.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, deptNm);
-			rs = pstmt.executeQuery();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				DeptVO dVo = new DeptVO();
-				dVo.setDeptSq(rs.getInt("dept_Sq"));
-				dVo.setDeptNm(rs.getString("dept_Nm"));				
-				list.add(dVo);			
+				dVo.setDeptSq(rs.getInt("DEPT_SQ"));
+				dVo.setDeptNm(rs.getString("DEPT_NM"));
+				
+				list.add(dVo);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.close(conn, pstmt, rs);
+			DBManager.close(conn, stmt, rs);
 		}
 		return list;
 	}
