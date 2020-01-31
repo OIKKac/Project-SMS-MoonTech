@@ -280,7 +280,7 @@ public class MatDAO {
 		return stockList;
 		
 	}
-		
+		/*
 	public ArrayList<MatVO> searchMatAjax(String value){
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -322,6 +322,6 @@ public class MatDAO {
         return list;
         
      }
-	
+	*/
 }				
 			
