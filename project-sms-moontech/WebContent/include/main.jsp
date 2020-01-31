@@ -17,7 +17,7 @@
   <link href="../WebContent/resource/bootstrap/argon-dashboard-master/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
   <link href="../WebContent/resource/bootstrap/argon-dashboard-master/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="../WebContent/resource/Tbootstrap/argon-dashboard-master/assets/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
+  <link href="../WebContent/resource/bootstrap/argon-dashboard-master/assets/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
 </head>
 
 <body class="">

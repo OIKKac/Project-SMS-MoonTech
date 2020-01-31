@@ -16,7 +16,6 @@ public class MatWriteAction implements Action {
 			
 		MatVO mVo = new MatVO();
 		mVo.setMatNm(request.getParameter("matNm"));
-		mVo.setMatNm(request.getParameter("matNm"));
 		mVo.setMatSize(request.getParameter("matSize"));
 		mVo.setStanPrice(request.getParameter("stanPrice"));
 		mVo.setWeight(request.getParameter("weight"));

@@ -1,52 +1,181 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/shopping.css">
-<script type="text/javascript" src="script/board.js"></script>
-</head>
-<body>
-	
-<!-- 
-	<div id="wrap" align="center">
-		<h1>게시글 등록</h1>
-		<form name="frm" method="post" action="BoardServlet">
-			<input type="hidden" name="command" value="board_write">
-			<table>
-				<tr>
-					<th>작성자</th>
-					<td><input type="text" name="matNm"> * 필수</td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><input type="password" name="pass"> * 필수 (게시물 수정
-						삭제시 필요합니다.)</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td><input type="text" name="email"></td>
-				</tr>
-				<tr>
-					<th>제목</th>
-					<td><input type="text" size="70" name="title"> * 필수</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><textarea cols="70" rows="15" name="content"></textarea></td>
-				</tr>
-			</table>
-			<br>
-			<br> <input type="submit" value="등록"
-				onclick="return boardCheck()"> <input type="reset"
-				value="다시 작성"> <input type="button" value="목록"
-				onclick="location.href='mat.do?command=mat_list'">
-		</form>
-	</div>
-	
-	 -->
-</body>
-</html>
+<jsp:include page="/include/header.jsp"></jsp:include>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+          <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                <div class="card-profile-image">
+                  <a href="#">
+                    <img src="/resources/img/theme/team-4-800x800.jpg" class="rounded-circle">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div class="d-flex justify-content-between">
+                <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
+                <a href="#" class="btn btn-sm btn-default float-right">Message</a>
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                    <div>
+                      <span class="heading">22</span>
+                      <span class="description">Friends</span>
+                    </div>
+                    <div>
+                      <span class="heading">10</span>
+                      <span class="description">Photos</span>
+                    </div>
+                    <div>
+                      <span class="heading">89</span>
+                      <span class="description">Comments</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+                <h3>
+                  Jessica Jones<span class="font-weight-light">, 27</span>
+                </h3>
+                <div class="h5 font-weight-300">
+                  <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                </div>
+                <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
+                </div>
+                <div>
+                  <i class="ni education_hat mr-2"></i>University of Computer Science
+                </div>
+                <hr class="my-4" />
+                <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
+                <a href="#">Show more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-8 order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My account</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form method= "post"  action = "emp.do">
+                <h6 class="heading-small text-muted mb-4">User information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">직원번호</label>
+                      <input type = "text"  name = "empNo"  class="form-control form-control-alternative"  disabled />
+                      
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">직원명</label>
+                      <input type = "text" name = "command" value = "emp_write" class="form-control form-control-alternative" > 
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">전화번호</label>
+                      <input type = "text"  name = "hp"  class="form-control form-control-alternative"/>
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-last-name">부서명</label>
+                      <input type = "hidden"  name = "deptSq"  readonly/>
+            <input type="text" name="deptNm" class="form-control form-control-alternative "/>
+            
+           <input type="button" value = "검색" onclick = "openPopUp()" class="btn btn-sm btn-primary"/>
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <!-- Address -->
+                    </div>     <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">직급</label>
+                      <input type = "text"  name = "posi"  class="form-control form-control-alternative" />
+                      
+                      </div>
+                    </div>
+                    
+                    
+                    
+                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-address">주소</label>
+                      <input type = "text"  name = "address"  class="form-control form-control-alternative" />
+                      
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-city">City</label>
+                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Country</label>
+                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States">
+                      </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Postal code</label>
+                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <!-- Description -->
+                <h6 class="heading-small text-muted mb-4">About me</h6>
+                <div class="pl-lg-4">
+                  <div class="form-group">
+                    <label>About Me</label>
+                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <!-- Footer -->
+
+<jsp:include page="/include/footer.jsp"></jsp:include>
+

@@ -8,8 +8,7 @@ public class MatVO {
 	private String picture;
 	private String stanPrice;
 	private String weight;
-	
-	
+	private String stockAmt;
 	public int getMatSq() {
 		return matSq;
 	}
@@ -46,13 +45,18 @@ public class MatVO {
 	public void setWeight(String weight) {
 		this.weight = weight;
 	}
-	
+	public String getStockAmt() {
+		return stockAmt;
+	}
+	public void setStockAmt(String stockAmt) {
+		this.stockAmt = stockAmt;
+	}
 	@Override
 	public String toString() {
 		return "MatVO [matSq=" + matSq + ", matNm=" + matNm + ", matSize=" + matSize + ", picture=" + picture
-				+ ", stanPrice=" + stanPrice + ", weight=" + weight + "]";
+				+ ", stanPrice=" + stanPrice + ", weight=" + weight + ", stockAmt=" + stockAmt + "]";
 	}
-	
+		
 	
 	
 		

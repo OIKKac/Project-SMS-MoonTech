@@ -118,7 +118,7 @@
           
         	<li class="nav-item  active ">
             	<a class="nav-link  active " href="../mat.do?command=mat_list">
-            		<i class="ni text-primary"></i>재료d
+            		<i class="ni text-primary"></i>재료
            		</a>
          	</li>
           

@@ -1,12 +1,15 @@
 package com.moon.sms.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.moon.sms.dto.MatInVO;
+import com.moon.sms.util.DBManager;
 
 
 public class MatInDAO {
@@ -15,8 +18,8 @@ public class MatInDAO {
 	
 	
 	
-	private static MatDAO instance = new MatDAO();
-	public static  MatDAO getInstance() {
+	private static MatInDAO instance = new MatInDAO();
+	public static  MatInDAO getInstance() {
 		return instance;
 	}
 	
@@ -28,6 +31,36 @@ public class MatInDAO {
 		conn = ds.getConnection();
 		
 		return conn;		
+	}	
+	
+	public int nextvalMatInSq() {
+		
+		String sql = "SELECT * FROM (SELECT IN_SQ FROM TB_MAT_IN ORDER BY ROWNUM DESC) WHERE ROWNUM = 1";
+		
+		Integer nextvalMatInSq = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				
+				nextvalMatInSq = (rs.getInt("IN_SQ"));
+				
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}		
+		
+		return nextvalMatInSq + 1;
 	}	
 	
 	public void regist(MatInVO mIVo) {

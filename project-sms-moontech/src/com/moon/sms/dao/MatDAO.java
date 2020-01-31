@@ -14,6 +14,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.moon.sms.dto.MatStockVO;
 import com.moon.sms.dto.MatVO;
 import com.moon.sms.util.DBManager;
 
@@ -40,9 +41,7 @@ public class MatDAO {
 	public int nextvalMatSq() {
 		
 		
-		String sql = "SELECT * FROM "
-					+"(SELECT MAT_SQ FROM TB_MAT ORDER BY ROWNUM DESC) "
-					+"WHERE ROWNUM = 1";
+		String sql = "SELECT * FROM (SELECT MAT_SQ FROM TB_MAT ORDER BY ROWNUM DESC) WHERE ROWNUM = 1";
 		
 		Integer nextvalMatSq = null;
 		
@@ -202,6 +201,8 @@ public class MatDAO {
 			conn = DBManager.getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
+			
+			
 			while (rs.next()) {
 				MatVO mVo = new MatVO();
 				mVo.setMatSq(rs.getInt("MAT_SQ"));
@@ -220,9 +221,107 @@ public class MatDAO {
 		}
 		return list;
 	}
-	
-	
 
+
+	@SuppressWarnings("null")
+	public List<MatVO> stockList(){
+		
+		String sql = "";
+		
+		
+		
+		List<MatVO> stockList = new ArrayList<MatVO>();
+		
+		String sql1 = "SELECT DISTINCT MAT_SQ FROM (SELECT * FROM TB_MAT_STOCK ORDER BY STOCK_SQ DESC)";
+		
+		String sql2 = "SELECT * FROM (SELECT * FROM TB_MAT_STOCK ORDER BY ROWNUM DESC) A, TB_MAT B WHERE A.MAT_SQ = ? AND A.MAT_SQ = B.MAT_SQ AND ROWNUM =1";;
+		
+		MatVO mVo = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			stmt = conn.createStatement();
+			rs1 = stmt.executeQuery(sql1);
+			pstmt = conn.prepareStatement(sql2);
+			while(rs1.next()) {
+				
+				int matSq = rs1.getInt("mat_Sq");
+			
+				pstmt.setInt(1, matSq);
+				
+				rs2 = pstmt.executeQuery();
+				
+				
+				mVo = new MatVO();
+				if(rs2.next()) {
+					
+					mVo.setMatSq(rs2.getInt("MAT_SQ"));
+					mVo.setMatNm(rs2.getString("MAT_NM"));
+					mVo.setPicture(rs2.getString("PICTURE"));			
+					mVo.setStockAmt(rs2.getString("STOCK_AMT"));			
+					stockList.add(mVo);
+				}
+				
+
+				
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.closeForStock(conn, stmt, rs1, rs2);
+		}		
+		
+		return stockList;
+		
+	}
+		
+	public ArrayList<MatVO> searchMatAjax(String value){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        ArrayList<MatVO> list = new ArrayList<MatVO>();
+       
+        String sql = "SELECT PL_NUM"
+              + "         ,PL_NAME"
+              + "      FROM TBL_PL"
+              + "      WHERE PL_NAME LIKE '%" + value + "%'";
+        
+        try {
+           conn = getConnection();
+           pstmt = conn.prepareStatement(sql);
+           rs = pstmt.executeQuery();
+           
+           while(rs.next()) {
+              PlVO plVo = new PlVO();
+              plVo.setPlNum(rs.getString("PL_NUM"));
+              plVo.setPlName(rs.getString("PL_NAME"));
+              
+              list.add(plVo);
+              
+           }
+           
+        } catch (SQLException e) {
+           e.printStackTrace();
+           
+        } finally {
+           try {
+              if(rs != null) rs.close();
+              if(pstmt != null) pstmt.close();
+              if(conn != null) conn.close();
+           } catch (Exception e) {
+              e.printStackTrace();
+              
+           }
+        }
+        return list;
+        
+     }
 	
-	
-}
+}				
+			

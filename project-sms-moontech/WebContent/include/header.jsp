@@ -25,27 +25,15 @@
   <title>
     Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
   </title>
- <!-- Favicon -->
- <link href="../bootstrap/argon-dashboard-master/assets/img/brand/favicon.png" rel="icon" type="image/png">
- <!-- Fonts -->
- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
- <!-- Icons -->
- <link href="../bootstrap/argon-dashboard-master/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
- <link href="../bootstrap/argon-dashboard-master/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
- <!-- CSS Files -->
- <link href="../bootstrap/argon-dashboard-master/assets/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
-  
-    <!--   Core   -->
-  <script src="../bootstrap/argon-dashboard-master/assets/js/plugins/jquery/dist/jquery.min.js"></script>
-  <script src="../bootstrap/argon-dashboard-master/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!--   Optional JS   -->
-  <script src="../bootstrap/argon-dashboard-master/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
-  <script src="../bootstrap/argon-dashboard-master/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
-  <!--   Argon JS   -->
-  <script src="../bootstrap/argon-dashboard-master/assets/js/argon-dashboard.min.js?v=1.1.1"></script>
-  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
- 
-
+  <!-- Favicon -->
+  <link href="../resources/img/brand/favicon.png" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="../resources/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  <link href="../resources/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="../resources/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -57,7 +45,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="../index.html">
-        <img src="/resources/img/brand/blue.png" class="navbar-brand-img" alt="...">
+        <img src="../resources/img/brand/blue.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -76,7 +64,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="/resources/img/theme/team-1-800x800.jpg
+                <img alt="Image placeholder" src="../resources/img/theme/team-1-800x800.jpg
 ">
               </span>
             </div>
@@ -116,7 +104,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="../index.html">
-                <img src="/resources/img/brand/blue.png">
+                <img src="../resources/img/brand/blue.png">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -224,7 +212,7 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="/resources/img/theme/team-4-800x800.jpg">
+                  <img alt="Image placeholder" src="../resources/img/theme/team-4-800x800.jpg">
                 </span>
                 <div class="media-body ml-2 d-none d-lg-block">
                   <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
@@ -263,7 +251,7 @@
     </nav>
     <!-- End Navbar -->
     <!-- Header -->
-    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(/resources/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(../resources/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
       <!-- Mask -->
       <span class="mask bg-gradient-default opacity-8"></span>
       <!-- Header container -->
