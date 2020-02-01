@@ -84,8 +84,7 @@
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="col-lg-5 col-md-6">
-              <h1 class="text-white">Welcome!</h1>
-              <p class="text-lead text-light">Welcome Moontech</p>
+     
             </div>
           </div>
         </div>
@@ -102,7 +101,7 @@
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="card-header bg-transparent pb-5">
-              <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+              <div class="text-muted text-center mt-2 mb-3"><small>MoonTeach</small></div>
               <div class="btn-wrapper text-center">
                 
               </div>

@@ -164,7 +164,7 @@
                 <hr class="my-4" />
                 <!-- Description -->
                 <div class="btn-wrapper text-center">
-                <input type = "submit" value = "등록" class="btn btn-sm btn-primary" >
+                <input type = "submit" value = "등록"  class="btn btn-sm btn-primary" >
                 <input type = "button" value = "취소" onclick = "location.href='./emp.do?command=emp_list'" class="btn btn-sm btn-info mr-4" >
                 
               </div>
