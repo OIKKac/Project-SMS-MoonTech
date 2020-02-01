@@ -12,7 +12,7 @@ public class EmpVO {
 	private String address;
 	private String picture;
 	private String email;
-	private int deptSq;
+	private String deptSq;
 	private String deptNm;
 	public int getEmpNo() {
 		return empNo;
@@ -62,10 +62,10 @@ public class EmpVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getDeptSq() {
+	public String getDeptSq() {
 		return deptSq;
 	}
-	public void setDeptSq(int deptSq) {
+	public void setDeptSq(String deptSq) {
 		this.deptSq = deptSq;
 	}
 	public String getDeptNm() {
@@ -80,6 +80,7 @@ public class EmpVO {
 				+ ", address=" + address + ", picture=" + picture + ", email=" + email + ", deptSq=" + deptSq
 				+ ", deptNm=" + deptNm + "]";
 	}
+	
 	
 	
 }

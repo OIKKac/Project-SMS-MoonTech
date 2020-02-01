@@ -1,48 +1,108 @@
+<jsp:include page="/include/header.jsp"></jsp:include>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/shopping.css">
-<script type="text/javascript" src="script/board.js"></script>
-</head>
-<body>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- Page content -->
+<div class="right-body">
+	<div class="top-header">
+		<div class="top-menu">
+			<div class="breadcrumb">
+				<a class="title-link" href="#/"> <span class="title-text">재료목록</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="bottom-body">
+	<div class="bottom-body-scroll body-render-wrapper">
+		<div class="product-edit">
+			<div class="left">
+				<div class="mat-info">
+					<div class="title">재료정보</div>
+					<div class="header">
+						<div class="button">
+							<button class="btn mr-10">삭제</button>
+						</div>
+					</div>
+				</div>
+				<div class="padding">
+					<div class="section-row">
+						<div class="left-section">
+							<div class="photo">
+								<div style="cursor: pointer;">
+									<input style="display: none" type="file" name="command"
+										value="mat_update"
+										accept="image/gif, image/jpg, image/jpeg,image/png, .gif, .jpg,.jpeg, .png/">
+									<div class="commin-ui-photo-upload"
+										style="line-height: 0; display: inline-block; position: relative;">
+										<div class="for-printer-only"
+											style="width: 100px; height: 100px;"
+											src=" C:\WorkSapce\moon-sms\picture" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<form method="post" name="frm" action="mat.do">
+	<div class="right-section">
+		<div class="form-group">
+			<div class="label">재료번호</div>
+			<div class="control">
+				<div class="control-group">
+					<div class="number-input">
+						<input type="text" placeholder="matSq" name="command"
+							value= "${mat.matSq}" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<input type = "button" value = "삭제" onclick = "location.href='mat.do?command=mat_delete&matSq=${mat.matSq}'">
 
-	<form method= "post" name = "frm" action = "mat.do">
-		<input type = "hidden" name = "command" value = "mat_update">		
-		<table>
-			<tr>
-				<td>재료번호</td>
 
-				<td><input type = "text" name = "matSq" value = "${mat.matSq}" /></td>
 
-			</tr>
-			<tr>
-				<td>재료명</td>
-				<td><input type = "text" name = "matNm" value = "${mat.matNm}"/></td>
-			</tr>
-			<tr>	
-				<td>사이즈</td>
-				<td><input type = "text" name = "matSize" value = "${mat.matSize}"/></td>	
-			</tr>	
-			<tr>
-				<td>무게</td>
-				<td><input type = "text" name = "weight" value = "${mat.weight}"/></td>
-			</tr>
-			<tr>
-				<td>표준가격</td>
-				<td><input type = "text" name = "stanPrice" value = "${mat.stanPrice}"/></td>
-			</tr>
-		</table>
-		<input type = "submit" value = "수정" onclick = "return emptyCheck()">	
-	</form>
+	
+		<div class="label">재료명</div>
+		<div class="control">
+			<div class="number-input">
+				<input type="text" name="matNm"
+					value="${mat.matNm}"  />
+			</div>
+		</div>
 
-	<!-- <div id="wrap" align="center">
+	
+	<div class="label">재료크기</div>
+		<div class="control">
+			<div class="number-input">
+				<input type="text" name="matSize"
+					value="${mat.matSize}"  />
+			</div>
+		</div>
+	
+	<div class="label">무게</div>
+		<div class="control">
+			<div class="number-input">
+				<input type="text" name="weight"
+					value="${mat.Weight}"  />
+			</div>
+		</div>
+	
+	<div class="label">표준가격</div>
+		<div class="control">
+			<div class="number-input">
+				<input type="text" name="stanPrice"
+					value="${mat.stanPrice}"  />
+			</div>
+		</div>
+	<input type="submit" value="수정" onclick="return emptyCheck()">
+</form>
+
+<!-- <div id="wrap" align="center">
 		<h1>게시글 수정</h1>
 		<form name="frm" method="post" action="BoardServlet">
 			<input type="hidden" name="command" value="board_update"> <input
@@ -81,6 +141,6 @@
 		</form>
 	</div>
 	 -->
-	
+
 </body>
 </html>

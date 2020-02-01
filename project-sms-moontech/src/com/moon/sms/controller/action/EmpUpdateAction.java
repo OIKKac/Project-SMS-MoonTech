@@ -20,7 +20,7 @@ public class EmpUpdateAction implements Action {
 		eVo.setEmpNo(Integer.parseInt(request.getParameter("empNo").trim()));
 		eVo.setEmpNm(request.getParameter("empNm"));
 		eVo.setHp(request.getParameter("hp"));
-		eVo.setDeptSq(Integer.parseInt(request.getParameter("deptSq").trim()));
+		eVo.setDeptSq(request.getParameter("deptSq").trim());
 		eVo.setPosi(request.getParameter("posi"));
 		eVo.setAddress(request.getParameter("address"));
 		eVo.setPicture(request.getParameter("picture"));

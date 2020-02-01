@@ -1,26 +1,30 @@
+<jsp:include page="/include/header.jsp"></jsp:include>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>재료</title>
-</head>
-<body>
-
 
 	<!-- <div onclick = "location.href='mat.do?command=mat_update_form'">
 		 -->
-		<table>
-			<thead>
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          <div class="row">
+           <!-- Card stats -->
+            <div class="col-lg-12">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+            <div class="card-header border-0">
+              <h3 class="mb-0">재료</h3>
+            </div>
+                  <div class="row">
+		<table class="table align-items-center table-flush">
+			<thead class="thead-light">
 				<tr>
-					<td>재료번호</td>
-					<td>재료명</td>
-					<td>사이즈</td>
-					<td>무게</td>
-					<td>표준가격</td>		
+					<th scope="col" >재료번호</th>
+					<th scope="col" >재료명</th>
+					<th scope="col" >사이즈</th>
+					<th scope="col" >무게</th>
+					<th scope="col" >표준가격</th>
 				</tr>
 			</thead>
 			
@@ -36,34 +40,51 @@
 				</c:forEach>
 			</tbody>
 		</table>	
-			
-			
-<!-- 			
-			<tr>
-				<td>재료번호</td>
-				<td><input type = "text" name = "matSq" value = "${mat.matSQ}" disabled/></td>
-			</tr>
-			<tr>
-				<td>재료명</td>
-				<td><input type = "text" name = "matNm" value = "${mat.matNm}"/></td>
-			</tr>
-			<tr>	
-				<td>사이즈</td>
-				<td><input type = "text" name = "matSize" value = "${mat.matSize}"/></td>	
-			</tr>	
-			<tr>
-				<td>무게</td>
-				<td><input type = "text" name = "weight" value = "${mat.weight}"/></td>
-			</tr>
-			<tr>
-				<td>표준가격</td>
-				<td><input type = "text" name = "stanPrice" value = "${mat.stanPrice}"/></td>
-			</tr>
-		</table>
+		</div>
+		
+		<div class="card-footer py-4">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</div>
+		</div>
+		</div>
+		
+	</div>
+	</div>
+	</div>
+	</div>
 	
-	
-	<a href = "mat.do?command=mat_write_form">asdf</a>
- -->	
-	
-</body>
-</html>
+<jsp:include page="/include/footer.jsp"></jsp:include>

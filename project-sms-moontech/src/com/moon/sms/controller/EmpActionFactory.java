@@ -31,9 +31,11 @@ public class EmpActionFactory {
 			action = new EmpListAction();
 		} else if (command.equals("emp_write_form")) {
 			action = new EmpWriteFormAction();
-		} else if (command.equals("emp_write")) {
-			action = new EmpWriteAction();
-		} else if (command.equals("emp_view")) {
+		} 
+//		else if (command.equals("emp_write")) {
+//			action = new EmpWriteAction();
+//		} 
+		else if (command.equals("emp_view")) {
 			action = new EmpViewAction();
 		} else if (command.equals("emp_update_form")) {
 			action = new EmpUpdateFormAction();
