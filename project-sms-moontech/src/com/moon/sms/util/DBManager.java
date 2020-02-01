@@ -47,6 +47,18 @@ public class DBManager {
 			e.printStackTrace();
 		}
 	}
+	public static void closeForUpdateStock(Connection conn, Statement stmt1, Statement stmt2, Statement stmt3, ResultSet rs1, ResultSet rs2) {
+		try {
+			rs1.close();
+			rs2.close();
+			stmt1.close();
+			stmt2.close();
+			stmt3.close();
+			conn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	// DML(insert, update, delete)을 수행한 후 리소스 해제를 위한 메소드
 	public static void close(Connection conn, Statement stmt) {

@@ -16,7 +16,6 @@ public class MatDeleteAction implements Action {
 		
 		int matSq = Integer.parseInt(request.getParameter("matSq"));
 		MatDAO mDao = MatDAO.getInstance();
-		
 		System.out.println("Delete matSq : " + matSq);
 		
 		mDao.delete(matSq);

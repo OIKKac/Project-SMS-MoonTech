@@ -12,14 +12,16 @@
 <div>
 	<div>입고서<hr></div>
 	<fmt:formatDate value="${currTime}" pattern="yyyy년 MM월 dd일" />
-	
-
-	
-	<form method= "post" action = "mat.do?command=mat_in_write">
+	<form role="form" method= "post" action = "mat.do?command=mat_in_write">
 		
 		<table>
 			<thead>
 			<tr>
+				<td><input type="text" name="empNo"  ></td>
+				<td><input type="text" name="purSq"  ></td>
+				
+				<td><input type="hidden" name="sendValue" id="sendValue" ></td>
+				<td><input type="hidden" name="inAmtValue" id="inAmtValue" ></td>
 				<td>입고번호</td>
 				<td><input type = "text" name = "inSq" value = "${matInSq}" readonly></td>
 			</tr>
@@ -133,44 +135,13 @@
           </div>
         </div></span>
     </div>
-		
+   	<input type="button" id="btn-submit" value="보내기">
 	</form>
 </div>	
+
+
 <script>
-// 자동완성기능 jquery
-$(function(){
-   $(".autocomplete").autocomplete({
-      source : function(request, response){
-         $.ajax({
-            type: 'post',
-            url: "/search.do?command=search_ajax",
-            dataType: "json",
-            // request.term = $("#autocomplete").val()
-            data: { value : request.term },
-            success: function(data){
-               response(
-                $.map(data, function(item){
-                   return{
-                     label: item.plName,
-                     value : item.plName,
-                     num : item.plNum
-                     
-                      
-                  }
-               })
-            );
-               
-         
-            }
-         });
-      },
-      
-      minLength: 1,
-      select: function(event, ui){
-         $(".plNum").val(ui.item.num);
-      }
-   });
-})
+
 
  
  // 추가
@@ -184,7 +155,6 @@ $(function(){
           
           var matSq = $(this).val();
           
-          alert(matSq)
           
            
           var picture = td.eq(1).text();
@@ -193,10 +163,10 @@ $(function(){
           var row = "<tr>"
                 + "<td>"
                 + "<input type=\"checkbox\" class=\"checkBox2\" name=\"check2\" value=\"" + matSq + "\"" + ">"
-                + "</td>" + "<td>" + picture
-                + "</td>" + "<td>" + matNm
-                + "</td>" + "<td>" + stockAmt
-                + "</td>" + "<td><input type=\"text\" name=\"stockIn\" ></td>" +
+                + "</td>" + "<td class=\"picture\">" + picture
+                + "</td>" + "<td class=\"matNm\">" + matNm
+                + "</td>" + "<td class=\"stockAmt\">" + stockAmt
+                + "</td>" + "<td><input type=\"text\" class=\"inAmt\" value=\"0\"></td>" +
                 "</tr>";
           // 숨긴 값의 체크박스를 false 상태로 바꿈
           $(this).prop("checked", false);
@@ -229,7 +199,6 @@ $(function(){
        
        var matSq = $(this).val();
        
-       alert(matSq)
        
        
        var row = "<tr class=\"stu"+ matSq +"\"> "
@@ -253,20 +222,36 @@ $(function(){
 
 });
  
- // submit
- $("form").on("submit", function(event) {
-	event.preventDefault();
+//submit 버튼
+$(document).ready(function(){
 	
-	int sendCut = 0;
-	
-	var inSq = 
-	 
-	 for(i=0; i<sendCut.length; i++){
+	var formObj = $("form[role='form']");
+
+	$("#btn-submit").on("click", function(){
+		
 		 
-		 
-	 }
-	 
- });
+		var send_array1 = Array();
+		var send_array2 = Array();
+		
+		
+		var send_cnt = 0;
+
+		var chkbox = $(".checkBox2");
+		var inAmt = $(".inAmt");
+		
+		for(i=0; i<chkbox.length; i++) {
+	        send_array1[send_cnt] = chkbox[i].value;
+	        send_array2[send_cnt] = inAmt[i].value;
+	        
+	        send_cnt++;
+		}
+		$("#sendValue").val(send_array1);
+		$("#inAmtValue").val(send_array2);
+		formObj.submit();
+		
+	});
+});
+		
 </script>
 
 
