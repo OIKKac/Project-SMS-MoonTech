@@ -2,145 +2,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- Page content -->
-<div class="right-body">
-	<div class="top-header">
-		<div class="top-menu">
-			<div class="breadcrumb">
-				<a class="title-link" href="#/"> <span class="title-text">재료목록</span>
-				</a>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="bottom-body">
-	<div class="bottom-body-scroll body-render-wrapper">
-		<div class="product-edit">
-			<div class="left">
-				<div class="mat-info">
-					<div class="title">재료정보</div>
-					<div class="header">
-						<div class="button">
-							<button class="btn mr-10">삭제</button>
-						</div>
-					</div>
-				</div>
-				<div class="padding">
-					<div class="section-row">
-						<div class="left-section">
-							<div class="photo">
-								<div style="cursor: pointer;">
-									<input style="display: none" type="file" name="command"
-										value="mat_update"
-										accept="image/gif, image/jpg, image/jpeg,image/png, .gif, .jpg,.jpeg, .png/">
-									<div class="commin-ui-photo-upload"
-										style="line-height: 0; display: inline-block; position: relative;">
-										<div class="for-printer-only"
-											style="width: 100px; height: 100px;"
-											src=" C:\WorkSapce\moon-sms\picture" />
+<div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          <div class="row">
+           <!-- Card stats -->
+            <div class="col-lg-12">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+            <div class="card-header border-0">
+              <h3 class="mb-0"> 재료 수정</h3>
+            </div>
+	<div class="card-body">
+	<form method="post" name="frm" action="mat.do">
+		<input type = "hidden" name = "command" value = "mat_update">		
+		<input type = "hidden" name = "matSq"  value = "${mat.matSq}">		
+				<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label class="form-control-label" for="input-email">재료번호</label>
+										<input type="text" value ="${mat.matSq}" class="form-control form-control-alternative" disabled />
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label class="form-control-label" for="input-username">재료명</label>
+										<input type="text" name="matNm"  value="${mat.matNm}"
+											class="form-control form-control-alternative">
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
+				
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label class="form-control-label" for="input-email">사이즈</label>
+										<input type="text"  name="matSize" value="${mat.matSize}" class="form-control form-control-alternative"  />
+									</div>
+								</div>
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label class="form-control-label" for="input-username">무게</label>
+										<input type="text" name="weight"  value="${mat.weight}"
+											class="form-control form-control-alternative">
+									</div>
+								</div>
+							</div>				
+							<div class="row">
+								<div class="col-lg-3">
+										<div class="form-group">
+											<label class="form-control-label" for="input-city">사진</label>
+											<button class="btn btn-icon btn-3 btn-primary"  type="button"  id="btn-upload" class="form-control form-control-alternative">
+											<span class="btn-inner--icon"><i class="ni ni-cloud-upload-96"></i></span>
+  											 <span class="btn-inner--text">사진 등록하기</span>
+											</button>
+											<input type="file" value="${mat.picture}" name="picture" id="file" onchange="changeValue(this)" style="display:none;"/>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="form-group">
+										<input type="text" id="filename" class="form-control" disabled />
+										</div>
+									</div>
+								<div class="col-lg-6">
+									<div class="form-group">
+										<label class="form-control-label" for="input-username">표준가격</label>
+										<input type="text" name="stanPrice"  value="${mat.stanPrice}"
+											class="form-control form-control-alternative">
+									</div>
+								</div>
+							</div>				
+							
+							<hr class="my-4" />
+							<!-- Description -->
+							<div class="btn-wrapper text-center">
+								<input type="button" class="btn btn-danger btn-lg" value="삭제"  onclick=  "location.href='mat.do?command=mat_delete&matSq=${mat.matSq}'">
+								<input type="submit" value="수정"  class="btn btn-primary btn-lg" >
+								<input type="button" value="취소" onclick="location.href='mat.do?command=mat_list'" class="btn btn-info btn-lg">
+							</div>	
+					</form>
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<form method="post" name="frm" action="mat.do">
-	<div class="right-section">
-		<div class="form-group">
-			<div class="label">재료번호</div>
-			<div class="control">
-				<div class="control-group">
-					<div class="number-input">
-						<input type="text" placeholder="matSq" name="command"
-							value= "${mat.matSq}" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+</div>
+</div>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function () {
+$('#btn-upload').click(function (e) {
+e.preventDefault();
+
+$('#file').click();
+});
+});
+
+function changeValue(obj){
+	document.getElementById("filename").value =obj.value;
+ }
+
+</script>
+
+<jsp:include page="/include/footer.jsp"></jsp:include>
 
 
 
 
-	
-		<div class="label">재료명</div>
-		<div class="control">
-			<div class="number-input">
-				<input type="text" name="matNm"
-					value="${mat.matNm}"  />
-			</div>
-		</div>
 
-	
-	<div class="label">재료크기</div>
-		<div class="control">
-			<div class="number-input">
-				<input type="text" name="matSize"
-					value="${mat.matSize}"  />
-			</div>
-		</div>
-	
-	<div class="label">무게</div>
-		<div class="control">
-			<div class="number-input">
-				<input type="text" name="weight"
-					value="${mat.Weight}"  />
-			</div>
-		</div>
-	
-	<div class="label">표준가격</div>
-		<div class="control">
-			<div class="number-input">
-				<input type="text" name="stanPrice"
-					value="${mat.stanPrice}"  />
-			</div>
-		</div>
-	<input type="submit" value="수정" onclick="return emptyCheck()">
-</form>
 
-<!-- <div id="wrap" align="center">
-		<h1>게시글 수정</h1>
-		<form name="frm" method="post" action="BoardServlet">
-			<input type="hidden" name="command" value="board_update"> <input
-				type="hidden" name="num" value="${board.num}">
-			<table>
-				<tr>
-					<th>작성자</th>
-					<td><input type="text" size="12" name="name"
-						value="${board.name}"> * 필수</td>
-				</tr>
-				<tr>
-					<th>비밀번호</th>
-					<td><input type="password" size="12" name="pass"> *
-						필수 (게시물 수정 삭제시 필요합니다.)</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td><input type="text" size="40" maxlength="50" name="email"
-						value="${board.email}"></td>
-				</tr>
-				<tr>
-					<th>제목</th>
-					<td><input type="text" size="70" name="title"
-						value="${board.title}"></td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td><textarea cols="70" rows="15" name="content">${board.content}</textarea></td>
-				</tr>
-			</table>
-			<br>
-			<br> <input type="submit" value="등록"
-				onclick="return boardCheck()"> <input type="reset"
-				value="다시 작성"> <input type="button" value="목록"
-				onclick="location.href='BoardServlet?command=board_list'">
-		</form>
-	</div>
-	 -->
 
-</body>
-</html>
+
+
+
+
+
+
+

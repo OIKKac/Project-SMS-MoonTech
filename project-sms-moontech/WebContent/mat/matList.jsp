@@ -12,10 +12,15 @@
            <!-- Card stats -->
             <div class="col-lg-12">
               <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-            <div class="card-header border-0">
-              <h3 class="mb-0">재료</h3>
-            </div>
+             <div class="card-body">
+             <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-5">재료</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <a href="mat.do?command=mat_write_form" class="btn btn-primary btn-lg">재료 등록</a>
+                </div>
+              </div>
                   <div class="row">
 		<table class="table align-items-center table-flush">
 			<thead class="thead-light">

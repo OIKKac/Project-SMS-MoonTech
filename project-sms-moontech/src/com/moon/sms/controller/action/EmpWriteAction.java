@@ -18,7 +18,6 @@ public class EmpWriteAction implements Action {
 		EmpVO eVo = (EmpVO)request.getAttribute("eVo");
 		System.out.println(eVo);
 		EmpDAO eDao = EmpDAO.getInstance();
-
 		eDao.regist(eVo);
 
 		new EmpListAction().execute(request, response);

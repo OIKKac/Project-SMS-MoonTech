@@ -16,21 +16,13 @@ public class PartWriteAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PartVO pVo = new PartVO();
-		
-		pVo.setPartSq(Integer.parseInt(request.getParameter("partSq")));
-		pVo.setPartNm(request.getParameter("partNm"));
-		pVo.setPartNm(request.getParameter("partSize"));
-		pVo.setWeight(Integer.parseInt(request.getParameter("weight")));
-		pVo.setPicture(request.getParameter("picture"));
-		pVo.setStanPrice(Integer.parseInt(request.getParameter("stanPrice")));
-		pVo.setMatSq(Integer.parseInt(request.getParameter("matSq")));
-		
+		pVo = (PartVO)request.getAttribute("pVo");
 		  
 		PartDAO pDao = PartDAO.getInstance();	
 		
 		pDao.regist(pVo);
 		  
-		new MatListAction().execute(request, response);
+		new PartListAction().execute(request, response);
 
 	}
 

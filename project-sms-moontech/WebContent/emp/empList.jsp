@@ -33,7 +33,14 @@
 					 <th scope="row">
                       <div class="media align-items-center">
                         <a href="#" class="avatar rounded-circle mr-3"> <%-- ${emp.picture} --%>
-                          <img alt="Image placeholder" src="/resources/img/theme/team-1-800x800.jpg">
+                          
+                          <c:if test = "${emp.picture ne null}" >
+								<img src="displayFile?fileName=${emp.picture}">
+						</c:if>
+						<c:if test = "${emp.picture eq null}" >
+                        		  <img alt="Image placeholder" src="/resources/img/theme/team-1-800x800.jpg">
+                          </c:if>
+                          
                         </a>
                         <div class="media-body">
                           <span class="mb-0 text-sm">${emp.empNo}</span>
@@ -82,13 +89,9 @@
                 <div class="col-12 text-right">
                   <a href="emp.do?command=emp_write_form" class="btn btn-primary btn-lg">직원등록</a>
                 </div>
-                		
-		
-		
 		</div>
 		</div>
 		</div>
-		
 	</div>
 	</div>
 	</div>

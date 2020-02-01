@@ -10,6 +10,8 @@ public class PartVO {
 	private String picture;
 	private int stanPrice;
 	private int matSq;
+	private String matNm;
+	
 	public int getPartSq() {
 		return partSq;
 	}
@@ -52,10 +54,16 @@ public class PartVO {
 	public void setMatSq(int matSq) {
 		this.matSq = matSq;
 	}
+	public String getMatNm() {
+		return matNm;
+	}
+	public void setMatNm(String matNm) {
+		this.matNm = matNm;
+	}
 	@Override
 	public String toString() {
 		return "PartVO [partSq=" + partSq + ", partNm=" + partNm + ", partSize=" + partSize + ", weight=" + weight
-				+ ", picture=" + picture + ", stanPrice=" + stanPrice + ", matSq=" + matSq + "]";
+				+ ", picture=" + picture + ", stanPrice=" + stanPrice + ", matSq=" + matSq + ", matNm=" + matNm + "]";
 	}
-		
+	
 }

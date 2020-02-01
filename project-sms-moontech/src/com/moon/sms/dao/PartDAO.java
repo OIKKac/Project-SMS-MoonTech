@@ -69,9 +69,9 @@ public int nextvalPartSq() {
 		
 	
 	public void regist(PartVO pVo) {
-		String sql = "INSERT INTO TB_EMP("
+		String sql = "INSERT INTO TB_PART("
 				+ "PART_SQ, PART_NM, PART_SIZE, WEIGHT, picture, STAN_PRICE, MAT_SQ) "
-				+ "VALUES(?, ?, ?, ?, ?, ?, ?,)";
+				+ "VALUES(?, ?, ?, ?, ?, ?, ?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -95,7 +95,8 @@ public int nextvalPartSq() {
 
 
 	public PartVO read(int partSq) {
-		String sql = "SELECT * FROM TB_PART WHERE PART_SQ = ?";
+		String sql = "SELECT p.part_Sq, p.part_Nm, p.part_Size, p.weight, p.picture,p.stan_Price, m.mat_Sq, m.mat_nm " + 
+				"FROM TB_PART p , TB_MAT m WHERE p.MAT_SQ = m.MAT_SQ AND PART_SQ = ?";
 		PartVO pVo = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -114,7 +115,8 @@ public int nextvalPartSq() {
 				pVo.setWeight(rs.getInt("weight"));
 				pVo.setPicture(rs.getString("picture"));
 				pVo.setStanPrice(rs.getInt("stan_Price"));
-				pVo.setMatSq(rs.getInt("mat_Sq"));							
+				pVo.setMatSq(rs.getInt("mat_Sq"));		
+				pVo.setMatNm(rs.getString("mat_nm"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -85,7 +85,7 @@
 									<div class="col-lg-12">
 										<div class="form-group">
 											<label class="form-control-label" for="input-address">주소</label>
-											<input type="text" name="address1"
+											<input type="text" name="address"
 												class="form-control form-control-alternative" /> 
 										</div>
 									</div>
@@ -133,10 +133,8 @@
 </div>
 
 <!-- Footer -->
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-
 $(function () {
 
 $('#btn-upload').click(function (e) {
@@ -146,7 +144,6 @@ e.preventDefault();
 $('#file').click();
 
 });
-
 });
 
 function changeValue(obj){
@@ -194,7 +191,7 @@ function writeEmp() {
 
 				type : 'POST',
 				enctype : 'multipart/form-data',
-				url : '/emp.do?command=emp_write',
+				url : 'emp.do?command=emp_write',
 
 				processData : false,
 				contentType : false,
@@ -205,13 +202,12 @@ function writeEmp() {
 
 				success : function(data) {
 					alert("등록 완료되었습니다.");
-					location.href = "/emp.do?command=emp_list";
+					location.href = "emp.do?command=emp_list";
 				},
 				error : function(data) {
 					alert("오류:: 다시 시도해주세요.");
 					return false;
 				}
-
 			})
 		} else {
 			return false;

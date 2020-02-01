@@ -25,11 +25,12 @@ public class MatServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");    
+		response.setContentType("text/html;charset=utf-8");
 		
 		String command = request.getParameter("command");
 		
 		MatActionFactory maf = MatActionFactory.getInstance();
-		
 		Action action = maf.getAction(command);
 		
 		if(action != null) {
@@ -43,7 +44,8 @@ public class MatServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");    
+		response.setContentType("text/html;charset=utf-8");     
 		doGet(request, response);
 	}
 

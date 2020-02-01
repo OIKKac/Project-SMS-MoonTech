@@ -13,30 +13,31 @@ public class EmpUpdateAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		EmpVO eVo = new EmpVO();
 
 		System.out.println("-------------empUpdateAction-------------");
 		
-		eVo.setEmpNo(Integer.parseInt(request.getParameter("empNo").trim()));
-		eVo.setEmpNm(request.getParameter("empNm"));
-		eVo.setHp(request.getParameter("hp"));
-		eVo.setDeptSq(request.getParameter("deptSq").trim());
-		eVo.setPosi(request.getParameter("posi"));
-		eVo.setAddress(request.getParameter("address"));
-		eVo.setPicture(request.getParameter("picture"));
-		eVo.setEmail(request.getParameter("email"));
-		eVo.setPwd(request.getParameter("pwd"));
+		/*
+		EmpVO eVo = new EmpVO();
+		 * eVo.setEmpNo(Integer.parseInt(request.getParameter("empNo").trim()));
+		 * eVo.setEmpNm(request.getParameter("empNm"));
+		 * eVo.setHp(request.getParameter("hp"));
+		 * eVo.setDeptSq(request.getParameter("deptSq").trim());
+		 * eVo.setPosi(request.getParameter("posi"));
+		 * eVo.setAddress(request.getParameter("address"));
+		 * eVo.setPicture(request.getParameter("picture"));
+		 * eVo.setEmail(request.getParameter("email"));
+		 * eVo.setPwd(request.getParameter("pwd"));
+		 * 
+		 * System.out.println("empNo :"+ eVo.getEmpNo()); System.out.println("empNm :"+
+		 * eVo.getEmpNm()); System.out.println("hp :"+ eVo.getHp());
+		 * System.out.println("deptSq :"+ eVo.getDeptSq()); System.out.println("posi :"+
+		 * eVo.getPosi()); System.out.println("address :"+ eVo.getAddress());
+		 * System.out.println("picture :"+ eVo.getPicture());
+		 * System.out.println("email :"+ eVo.getEmail()); System.out.println("pwd :"+
+		 * eVo.getPwd());
+		 */
 		
-		System.out.println("empNo :"+ eVo.getEmpNo());
-		System.out.println("empNm :"+ eVo.getEmpNm());
-		System.out.println("hp :"+ eVo.getHp());
-		System.out.println("deptSq :"+ eVo.getDeptSq());
-		System.out.println("posi :"+ eVo.getPosi());
-		System.out.println("address :"+ eVo.getAddress());
-		System.out.println("picture :"+ eVo.getPicture());
-		System.out.println("email :"+ eVo.getEmail());
-		System.out.println("pwd :"+ eVo.getPwd());
-		
+		EmpVO eVo = (EmpVO)request.getAttribute("eVo");
 		EmpDAO eDao = EmpDAO.getInstance();
 		eDao.modify(eVo);
 

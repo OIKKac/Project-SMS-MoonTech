@@ -16,23 +16,8 @@ public class PartUpdateAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PartVO pVo = new PartVO();
-		
-		pVo.setPartSq(Integer.parseInt(request.getParameter("partSq")));
-		pVo.setPartNm(request.getParameter("partNm"));
-		pVo.setPartSize(request.getParameter("partSize"));
-		pVo.setWeight(Integer.parseInt(request.getParameter("weight")));
-		pVo.setPicture(request.getParameter("picture"));
-		pVo.setStanPrice(Integer.parseInt(request.getParameter("stanPrice")));
-		pVo.setMatSq(Integer.parseInt(request.getParameter("matSq")));
-		
-		System.out.println("partSq : " + pVo.getPartSq());
-		System.out.println("partNm : " + pVo.getPartNm());
-		System.out.println("partSize : " + pVo.getPartSize());
-		System.out.println("weight : " + pVo.getWeight());
-		System.out.println("picture : " + pVo.getPicture());
-		System.out.println("stanPrice : " + pVo.getStanPrice());
-		System.out.println("matSq : " + pVo.getMatSq());
-		
+		pVo = (PartVO)request.getAttribute("pVo");
+		  
 		PartDAO pDao = PartDAO.getInstance();
 		pDao.modify(pVo);
 		System.out.println("pVo : " + pVo);
