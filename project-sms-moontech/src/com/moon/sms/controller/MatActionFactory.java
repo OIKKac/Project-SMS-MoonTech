@@ -57,10 +57,7 @@ public class MatActionFactory {
 		}else if (command.equals("mat_in_view")) {
 			action = new MatInViewAction();
 		}
-		//mat_out
-		else if(command.equals("mat_out_write_form")) {
-			action = new MatOutFormAction();
-		}
+
 		
 		
 		
