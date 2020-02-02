@@ -5,12 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.moon.sms.dto.MatInVO;
+import com.moon.sms.dto.MatVO;
 import com.moon.sms.util.DBManager;
 
 
@@ -107,7 +110,6 @@ public class MatInDAO {
 		PreparedStatement pstmt2 = null;
 		PreparedStatement pstmt3 = null;
 		ResultSet rs1 = null;
-		ResultSet rs2 = null;
 		
 
 		
@@ -148,7 +150,7 @@ public class MatInDAO {
 			e.printStackTrace();
 			
 		} finally {
-			DBManager.closeForUpdateStock(conn, pstmt1, pstmt2, pstmt3, rs1, rs2);
+			DBManager.closeForUpdateStock(conn, pstmt1, pstmt2, pstmt3, rs1);
 		}
 		
 	}
@@ -164,8 +166,53 @@ public class MatInDAO {
 		
 	}
 	
-   
-
+	public List<MatInVO> inListAll() {
+		System.out.println("-Start Method : inListAll");
+		
+		String sqlList = "SELECT * FROM TB_MAT_IN ORDER BY IN_SQ DESC";
+		String sqlCountDe = "SELECT COUNT(C.IN_SQ) AS CNT_DE FROM TB_MAT_IN_DE C, TB_MAT_IN P WHERE C.IN_SQ = ?";
+		
+		List<MatInVO> list = new ArrayList<MatInVO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		Statement stmt = null;
+		ResultSet rs1 = null;
+		ResultSet rs2 = null;
+		try {
+			conn = DBManager.getConnection();
+			stmt = conn.createStatement();
+			rs1 = stmt.executeQuery(sqlList);
+			pstmt = conn.prepareStatement(sqlCountDe);
+			
+			while (rs1.next()) {
+				MatInVO mIVo = new MatInVO();
+				
+				int inSq = rs1.getInt("IN_SQ");
+				pstmt.setInt(1, inSq);
+				rs2 = pstmt.executeQuery();
+				
+					if(rs2.next()) {
+					mIVo.setInSq(inSq);
+					mIVo.setInDT(rs1.getDate("IN_DT")); 
+					mIVo.setEmpNo(rs1.getInt("EMP_NO"));
+					mIVo.setPurSq(rs1.getInt("PUR_SQ"));
+					
+					mIVo.setCntDe(rs2.getInt("CNT_DE"));
+					
+	
+					list.add(mIVo);
+			
+					}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.closeForStock(conn, stmt, rs1, rs2);
+		}
+		System.out.println("List : "+ list);
+		System.out.println("-End Method");
+		return list;
+	}
 
 
 	

@@ -11,7 +11,7 @@
 
 <a href = "mat.do?command=mat_update">matUpdate</a><br>
 
-<a href = "mat.do?command=mat_write_form">regist</a><rbr>
+<a href = "mat.do?command=mat_write_form">regist</a><br>
 
 <a href = "emp.do?command=emp_list">Emp list</a><br>
 
@@ -19,9 +19,13 @@
 
 <a href = "part.do?command=part_write_form">partWrite</a>
 
-<a href = "mat.do?command=mat_in_write_form">matInWrite</a>
+<a href = "mat.do?command=mat_in_write_form">matInWrite</a><br>
+
+<a href="mat.do?command=mat_in_list">matInList</a>
 </div>
 
 
 
 <jsp:include page="/include/footer.jsp"></jsp:include>
+
+

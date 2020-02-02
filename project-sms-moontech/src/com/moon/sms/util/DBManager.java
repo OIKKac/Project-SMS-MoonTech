@@ -47,10 +47,9 @@ public class DBManager {
 			e.printStackTrace();
 		}
 	}
-	public static void closeForUpdateStock(Connection conn, Statement stmt1, Statement stmt2, Statement stmt3, ResultSet rs1, ResultSet rs2) {
+	public static void closeForUpdateStock(Connection conn, Statement stmt1, Statement stmt2, Statement stmt3, ResultSet rs1) {
 		try {
 			rs1.close();
-			rs2.close();
 			stmt1.close();
 			stmt2.close();
 			stmt3.close();

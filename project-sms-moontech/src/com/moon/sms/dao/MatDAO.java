@@ -205,6 +205,7 @@ public class MatDAO {
 			
 			while (rs.next()) {
 				MatVO mVo = new MatVO();
+				
 				mVo.setMatSq(rs.getInt("MAT_SQ"));
 				mVo.setMatNm(rs.getString("MAT_NM"));
 				mVo.setMatSize(rs.getString("MAT_SIZE"));

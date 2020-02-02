@@ -12,6 +12,8 @@ public class MatInVO {
 	private int deSq;
 	private int matSq;
 	private int inAmt;
+	private int cntDe;
+	
 	public int getInSq() {
 		return inSq;
 	}
@@ -54,11 +56,16 @@ public class MatInVO {
 	public void setInAmt(int inAmt) {
 		this.inAmt = inAmt;
 	}
-	
+	public int getCntDe() {
+		return cntDe;
+	}
+	public void setCntDe(int cntDe) {
+		this.cntDe = cntDe;
+	}
 	@Override
 	public String toString() {
 		return "MatInVO [inSq=" + inSq + ", inDT=" + inDT + ", empNo=" + empNo + ", purSq=" + purSq + ", deSq=" + deSq
-				+ ", matSq=" + matSq + ", inAmt=" + inAmt + "]";
+				+ ", matSq=" + matSq + ", inAmt=" + inAmt + ", cntDe=" + cntDe + "]";
 	}
 	
 	
