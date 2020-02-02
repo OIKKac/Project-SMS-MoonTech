@@ -7,23 +7,29 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.moon.sms.dao.PartDAO;
+import com.moon.sms.dto.PartVO;
 
-public class PartWriteFormAction implements Action {
+
+
+public class PartUpdateFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/part/partWrite.jsp";
-
+		
+		String url = "/part/partUpdate.jsp";
+		String i = request.getParameter("partSq");
+		int partSq = Integer.parseInt(i);
+		
+		System.out.println("modify partSq :" + partSq);
+		
 		PartDAO pDao = PartDAO.getInstance();
-		int nextvalPartSq = pDao.nextvalPartSq();
-
-		System.out.println(nextvalPartSq);
-
-		request.setAttribute("partSq", nextvalPartSq);
-
+		PartVO pVo = pDao.read(partSq);
+		
+		request.setAttribute("part", pVo);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
+
 	}
 }

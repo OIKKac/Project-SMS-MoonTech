@@ -49,7 +49,7 @@ public class PartBuyInVO {
 	
 	private String empNm;
 	private String purNm;
-	private String CntDe;
+	private int CntDe;
 	public int getInSq() {
 		return inSq;
 	}
@@ -104,10 +104,10 @@ public class PartBuyInVO {
 	public void setPurNm(String purNm) {
 		this.purNm = purNm;
 	}
-	public String getCntDe() {
+	public int getCntDe() {
 		return CntDe;
 	}
-	public void setCntDe(String cntDe) {
+	public void setCntDe(int cntDe) {
 		CntDe = cntDe;
 	}
 	@Override
@@ -116,7 +116,6 @@ public class PartBuyInVO {
 				+ deSq + ", inAmt=" + inAmt + ", partSq=" + partSq + ", empNm=" + empNm + ", purNm=" + purNm
 				+ ", CntDe=" + CntDe + "]";
 	}
-	
-	
+
 	
 }

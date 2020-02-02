@@ -266,7 +266,6 @@ public class MatInDAO {
 					
 					mIVo.setCntDe(rs2.getInt("CNT_DE"));
 					
-	
 					list.add(mIVo);
 			
 					}

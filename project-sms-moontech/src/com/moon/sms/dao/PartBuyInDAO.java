@@ -40,7 +40,7 @@ public class PartBuyInDAO {
 	
 	public int nextvalPartBuyInSq() {
 		
-		String sql = "SELECT * FROM (SELECT IN_SQ FROM TB_PART_BUY_IN ORDER BY ROWNUM DESC) WHERE ROWNUM = 1";
+		String sql = "SELECT * FROM (SELECT IN_SQ FROM TB_MAT_IN ORDER BY ROWNUM DESC) WHERE ROWNUM = 1";
 		
 		Integer nextvalPartBuyInSq = null;
 		
@@ -68,9 +68,9 @@ public class PartBuyInDAO {
 		return nextvalPartBuyInSq + 1;
 	}	
 
-	public void registIn(PartBuyInVO pBIVo) {
+	public void registIn(PartBuyInVO mIVo) {
 		
-		String sql = "INSERT INTO TB_PART_BUY_IN(IN_SQ, EMP_NO, PUR_SQ) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO TB_MAT_IN(IN_SQ, EMP_NO, PUR_SQ) VALUES(?, ?, ?)";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -80,9 +80,9 @@ public class PartBuyInDAO {
 			conn = DBManager.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, pBIVo.getInSq());
-			pstmt.setInt(2, pBIVo.getEmpNo());
-			pstmt.setInt(3, pBIVo.getPurSq());
+			pstmt.setInt(1, mIVo.getInSq());
+			pstmt.setInt(2, mIVo.getEmpNo());
+			pstmt.setInt(3, mIVo.getPurSq());
 			
 			pstmt.executeUpdate();
 			
@@ -95,10 +95,10 @@ public class PartBuyInDAO {
 		}
 	}
 
-	public void registDe(PartBuyInVO pBIVo) {
+	public void registDe(PartBuyInVO mIVo) {
 		
 		String selectAmtSql = "SELECT stock_amt FROM (SELECT * FROM TB_MAT_STOCK ORDER BY ROWNUM DESC) A, TB_MAT B WHERE A.PART_SQ = ? AND A.PART_SQ = B.PART_SQ AND ROWNUM =1";
-		String deSql = "INSERT INTO tb_mat_in_de(DE_SQ, IN_SQ, PART_SQ, IN_AMT) VALUES(SEQ_PART_BUY_IN_DE.NEXTVAL, ?, ?, ?)";
+		String deSql = "INSERT INTO tb_mat_in_de(DE_SQ, IN_SQ, PART_SQ, IN_AMT) VALUES(SEQ_MAT_IN_DE.NEXTVAL, ?, ?, ?)";
 		String stockSql = "INSERT INTO TB_MAT_STOCK(STOCK_SQ, PART_SQ, STOCK_AMT, IN_AMT) VALUES(SEQ_MAT_STOCK.NEXTVAL, ?, ?, ?)" ;
 		
 		Integer partSq = null;
@@ -120,8 +120,8 @@ public class PartBuyInDAO {
 			pstmt3 = conn.prepareStatement(stockSql);
 			
 			//Get partSq, inAmt - Action 
-			partSq = pBIVo.getPartSq();
-			inAmt = pBIVo.getInAmt();
+			partSq = mIVo.getPartSq();
+			inAmt = mIVo.getInAmt();
 			
 			//Get partSq, StockAmt - DB
 			pstmt1.setInt(1, partSq);
@@ -130,8 +130,8 @@ public class PartBuyInDAO {
 			if(rs1.next()) {
 				stockAmt = rs1.getInt("STOCK_AMT");
 				
-				//Insert TB_PART_BUY_IN_DE
-				pstmt2.setInt(1, pBIVo.getInSq());
+				//Insert TB_MAT_IN_DE
+				pstmt2.setInt(1, mIVo.getInSq());
 				pstmt2.setInt(2, partSq);
 				pstmt2.setInt(3, inAmt);
 				pstmt2.executeUpdate();
@@ -162,7 +162,7 @@ public class PartBuyInDAO {
 		
 		String sql = "";
 		
-		PartBuyInVO pBIVo = null;
+		PartBuyInVO mIVo = null;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -175,25 +175,25 @@ public class PartBuyInDAO {
 			rs = pstmt.executeQuery();
 		
 			if (rs.next()) {
-				pBIVo = new PartBuyInVO();
-				pBIVo.setPartSq(rs.getInt("PART_SQ"));
-				pBIVo.setInAmt(rs.getInt("IN_AMT"));
+				mIVo = new PartBuyInVO();
+				mIVo.setPartSq(rs.getInt("PART_SQ"));
+				mIVo.setInAmt(rs.getInt("IN_AMT"));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBManager.close(conn, pstmt, rs);
 		}
-		return pBIVo;	
+		return mIVo;	
 	}
 	
 	public List<PartVO> readDe(int inSq){
 		System.out.println("-Start Method: readDe");
 		
-		String sqlReadDe = "SELECT A.mat_sq, A.MAT_NM, A.PICTURE, B.IN_SQ, B.IN_AMT FROM TB_MAT A, TB_PART_BUY_IN_DE B WHERE B.PART_SQ = A.PART_SQ AND B.IN_SQ = ?";
+		String sqlReadDe = "SELECT A.PART_SQ, A.PART_NM, A.PICTURE, B.IN_SQ, B.IN_AMT FROM TB_MAT A, TB_MAT_IN_DE B WHERE B.PART_SQ = A.PART_SQ AND B.IN_SQ = ?";
 
 		List<PartVO> selectStockList = new ArrayList<PartVO>();
-		PartVO mVo = null;
+		PartVO pVO = null;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -206,14 +206,14 @@ public class PartBuyInDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				mVo = new PartVO();
+				pVO = new PartVO();
 				
-				mVo.setPartSq(rs.getInt("PART_SQ")); 
-				mVo.setPartNm(rs.getString("MAT_NM")); 
-				mVo.setPicture(rs.getString("PICTURE")); 
-				mVo.setInAmt(rs.getString("IN_AMT")); 
+				pVO.setPartSq(rs.getInt("PART_SQ")); 
+				pVO.setPartNm(rs.getString("PART_NM")); 
+				pVO.setPicture(rs.getString("PICTURE")); 
+				pVO.setInAmt(rs.getString("IN_AMT")); 
 				
-				selectStockList.add(mVo);
+				selectStockList.add(pVO);
 			}
 			
 		} catch (Exception e) {
@@ -233,9 +233,9 @@ public class PartBuyInDAO {
 	public List<PartBuyInVO> inListAll() {
 		System.out.println("-Start Method : inListAll");
 		
-		String sqlList = "SELECT c.*, p1.EMP_NM, P2.PUR_NM FROM TB_PART_BUY_IN C, TB_EMP P1, TB_PURCHASING P2 WHERE c.emp_no = p1.emp_no AND c.pur_sq = p2.pur_sq ORDER BY IN_SQ DESC" ;
-		String sqlCountDe = "SELECT COUNT(C.IN_SQ) AS CNT_DE FROM TB_PART_BUY_IN_DE C, TB_PART_BUY_IN P WHERE C.IN_SQ = P.IN_SQ AND C.IN_SQ = ?";
-		PartBuyInVO pBIVo = null;
+		String sqlList = "SELECT c.*, p1.EMP_NM, P2.PUR_NM FROM TB_MAT_IN C, TB_EMP P1, TB_PURCHASING P2 WHERE c.emp_no = p1.emp_no AND c.pur_sq = p2.pur_sq ORDER BY IN_SQ DESC" ;
+		String sqlCountDe = "SELECT COUNT(C.IN_SQ) AS CNT_DE FROM TB_MAT_IN_DE C, TB_MAT_IN P WHERE C.IN_SQ = P.IN_SQ AND C.IN_SQ = ?";
+		PartBuyInVO mIVo = null;
 		
 		List<PartBuyInVO> list = new ArrayList<PartBuyInVO>();
 		Connection conn = null;
@@ -251,23 +251,22 @@ public class PartBuyInDAO {
 			
 			while (rs1.next()) {
 				
-				 pBIVo = new PartBuyInVO();
+				 mIVo = new PartBuyInVO();
 				
 				int inSq = rs1.getInt("IN_SQ");
 				pstmt.setInt(1, inSq);
 				rs2 = pstmt.executeQuery();
 				
 					if(rs2.next()) {
-					pBIVo.setInSq(inSq);
-					pBIVo.setInDt(rs1.getDate("IN_DT")); 
-					pBIVo.setEmpNo(rs1.getInt("EMP_NO"));
-					pBIVo.setEmpNm(rs1.getString("EMP_NM"));
-					pBIVo.setPurNm(rs1.getString("PUR_NM"));
+					mIVo.setInSq(inSq);
+					mIVo.setInDt(rs1.getDate("IN_DT")); 
+					mIVo.setEmpNo(rs1.getInt("EMP_NO"));
+					mIVo.setEmpNm(rs1.getString("EMP_NM"));
+					mIVo.setPurNm(rs1.getString("PUR_NM"));
 					
-					pBIVo.setCntDe(rs2.getString("CNT_DE"));
+					mIVo.setCntDe(rs2.getInt("CNT_DE"));
 					
-	
-					list.add(pBIVo);
+					list.add(mIVo);
 			
 					}
 			}

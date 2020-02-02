@@ -37,11 +37,15 @@ public class PartPdcOrdVO {
 	private int ordSq;
 	private Date ordDt;
 	private int empNo;
-	private boolean ordFl;
+	private int ordFl;
+	private String empNm;
+	private int cnt;
 	
+	//tb_part_pdc_ord_de
 	private int deSq;
 	private int ordAmt;
 	private int partSq;
+	
 	public int getOrdSq() {
 		return ordSq;
 	}
@@ -60,11 +64,23 @@ public class PartPdcOrdVO {
 	public void setEmpNo(int empNo) {
 		this.empNo = empNo;
 	}
-	public boolean isOrdFl() {
+	public int getOrdFl() {
 		return ordFl;
 	}
-	public void setOrdFl(boolean ordFl) {
+	public void setOrdFl(int ordFl) {
 		this.ordFl = ordFl;
+	}
+	public String getEmpNm() {
+		return empNm;
+	}
+	public void setEmpNm(String empNm) {
+		this.empNm = empNm;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	public int getDeSq() {
 		return deSq;
@@ -86,10 +102,10 @@ public class PartPdcOrdVO {
 	}
 	@Override
 	public String toString() {
-		return "PartPdcOrdVO [ordSq=" + ordSq + ", ordDt=" + ordDt + ", empNo=" + empNo + ", ordFl=" + ordFl + ", deSq="
-				+ deSq + ", ordAmt=" + ordAmt + ", partSq=" + partSq + "]";
+		return "PartPdcOrdVO [ordSq=" + ordSq + ", ordDt=" + ordDt + ", empNo=" + empNo + ", ordFl=" + ordFl
+				+ ", empNm=" + empNm + ", cnt=" + cnt + ", deSq=" + deSq + ", ordAmt=" + ordAmt + ", partSq=" + partSq
+				+ "]";
 	}
-	
 	
 	
 }

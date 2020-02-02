@@ -22,6 +22,7 @@
 <a href = "mat.do?command=mat_in_write_form">matInWrite</a><br>
 
 <a href="mat.do?command=mat_in_list">matInList</a>
+<a href="mat.do?command=part_buy_in_write_form">partBuyInList</a>
 </div>
 
 
