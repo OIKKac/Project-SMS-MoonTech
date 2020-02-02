@@ -19,7 +19,7 @@ public class MatBuyReqDAO {
 	public static  MatBuyReqDAO getInstance() {
 		return instance;
 	}
-	
+	 
 	public Connection getConnection() throws Exception {
 		Connection conn = null;
 		Context initContext = new InitialContext();
