@@ -15,48 +15,50 @@
              <div class="card-body">
              <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-5">재료</h3>
+                  <h3 class="mb-5">부품</h3>
                 </div>
                 <div class="col-4 text-right">
-                  <a href="mat.do?command=mat_write_form" class="btn btn-primary btn-lg">재료 등록</a>
+                  <a href="part.do?command=part_write_form" class="btn btn-primary btn-lg">부품 등록</a>
                 </div>
               </div>
                   <div class="row">
 		<table class="table align-items-center table-flush">
 			<thead class="thead-light">
 				<tr>
-					<th scope="col" >재료번호</th>
-					<th scope="col" >재료명</th>
+					<th scope="col" >부품 번호</th>
+					<th scope="col" >부품명</th>
 					<th scope="col" >사이즈</th>
 					<th scope="col" >무게</th>
-					<th scope="col" >표준가격</th>
+					<th scope="col" >표준가격</th>	
+					<th scope="col" >재료번호</th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<c:forEach items = "${matList}" var = "mat">
+				<c:forEach items = "${partList}" var = "part">
 				<tr>
 					 <th scope="row">
                       <div class="media align-items-center">
-                        <a href="#" class="avatar rounded-circle mr-3"> <%-- ${mat.picture} --%>
+                        <a href="#" class="avatar rounded-circle mr-3"> <%-- ${part.picture} --%>
                           
-                          <c:if test = "${mat.picture ne null}" >
-								<img src="displayFile?fileName=${mat.picture}">
+                          <c:if test = "${part.picture ne null}" >
+								<img src="displayFile?fileName=${part.picture}">
 						</c:if>
-						<c:if test = "${mat.picture eq null}" >
+						<c:if test = "${part.picture eq null}" >
                         		  <img alt="Image placeholder" src="/resources/img/theme/team-1-800x800.jpg">
                           </c:if>
                           
                         </a>
                         <div class="media-body">
-                          <span class="mb-0 text-sm">${mat.matSq}</span>
+                          <span class="mb-0 text-sm">${part.partSq}</span>
                         </div>
                       </div>	
                       </th>		
-						<td><a href = "mat.do?command=mat_update_form&matSq=${mat.matSq}">${mat.matNm}</a></td>
-						<td>${mat.matSize}</td>
-						<td>${mat.weight}</td>
-						<td>${mat.stanPrice}</td>
+						<td><a href = "part.do?command=part_update_form&partSq=${part.partSq}">${part.partNm}</a></td>
+						<td>${part.partSize}</td>
+						<td>${part.weight}</td>
+						<td>${part.stanPrice}</td>
+						<td>${part.matSq}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -88,21 +90,9 @@
                 </ul>
               </nav>
             </div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		</div>
 		</div>
 		</div>
-		
 	</div>
 	</div>
 	</div>
