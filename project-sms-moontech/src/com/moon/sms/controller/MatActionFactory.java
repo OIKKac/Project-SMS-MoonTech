@@ -56,10 +56,11 @@ public class MatActionFactory {
 			action = new MatInListAction();
 		}else if (command.equals("mat_in_view")) {
 			action = new MatInViewAction();
-		}
+		}else if (command.equals("mat_buy_list")) {
+			action = new MatListAction();
 
 		
-		
+		}
 		
 		return action;
 	}

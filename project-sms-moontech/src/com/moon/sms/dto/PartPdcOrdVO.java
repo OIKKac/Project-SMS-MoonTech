@@ -46,66 +46,96 @@ public class PartPdcOrdVO {
 	private int ordAmt;
 	private int partSq;
 	
+	//PartPdcOrdList
+	private String partNm;
+
 	public int getOrdSq() {
 		return ordSq;
 	}
+
 	public void setOrdSq(int ordSq) {
 		this.ordSq = ordSq;
 	}
+
 	public Date getOrdDt() {
 		return ordDt;
 	}
+
 	public void setOrdDt(Date ordDt) {
 		this.ordDt = ordDt;
 	}
+
 	public int getEmpNo() {
 		return empNo;
 	}
+
 	public void setEmpNo(int empNo) {
 		this.empNo = empNo;
 	}
+
 	public int getOrdFl() {
 		return ordFl;
 	}
+
 	public void setOrdFl(int ordFl) {
 		this.ordFl = ordFl;
 	}
+
 	public String getEmpNm() {
 		return empNm;
 	}
+
 	public void setEmpNm(String empNm) {
 		this.empNm = empNm;
 	}
+
 	public int getCnt() {
 		return cnt;
 	}
+
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+
 	public int getDeSq() {
 		return deSq;
 	}
+
 	public void setDeSq(int deSq) {
 		this.deSq = deSq;
 	}
+
 	public int getOrdAmt() {
 		return ordAmt;
 	}
+
 	public void setOrdAmt(int ordAmt) {
 		this.ordAmt = ordAmt;
 	}
+
 	public int getPartSq() {
 		return partSq;
 	}
+
 	public void setPartSq(int partSq) {
 		this.partSq = partSq;
 	}
+
+	public String getPartNm() {
+		return partNm;
+	}
+
+	public void setPartNm(String partNm) {
+		this.partNm = partNm;
+	}
+
 	@Override
 	public String toString() {
 		return "PartPdcOrdVO [ordSq=" + ordSq + ", ordDt=" + ordDt + ", empNo=" + empNo + ", ordFl=" + ordFl
 				+ ", empNm=" + empNm + ", cnt=" + cnt + ", deSq=" + deSq + ", ordAmt=" + ordAmt + ", partSq=" + partSq
-				+ "]";
+				+ ", partNm=" + partNm + "]";
 	}
+	
 	
 	
 }

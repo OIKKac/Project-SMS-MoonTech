@@ -6,14 +6,16 @@ public class MatBuyReqVO {
 	
 	private int reqSq;
 	private Date reqDt;
-	private boolean reqFl;
+	private int reqFl;
 	private int empNo;
+	private String empNm;
+	private int cnt;
 	
+	// tb_mat_buy_req_de
 	private int deSq;
 	private int reqAmt;
 	private int matNo;
-	
-	
+	private String matNm;
 	public int getReqSq() {
 		return reqSq;
 	}
@@ -26,10 +28,10 @@ public class MatBuyReqVO {
 	public void setReqDt(Date reqDt) {
 		this.reqDt = reqDt;
 	}
-	public boolean isReqFl() {
+	public int getReqFl() {
 		return reqFl;
 	}
-	public void setReqFl(boolean reqFl) {
+	public void setReqFl(int reqFl) {
 		this.reqFl = reqFl;
 	}
 	public int getEmpNo() {
@@ -37,6 +39,18 @@ public class MatBuyReqVO {
 	}
 	public void setEmpNo(int empNo) {
 		this.empNo = empNo;
+	}
+	public String getEmpNm() {
+		return empNm;
+	}
+	public void setEmpNm(String empNm) {
+		this.empNm = empNm;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	public int getDeSq() {
 		return deSq;
@@ -56,12 +70,17 @@ public class MatBuyReqVO {
 	public void setMatNo(int matNo) {
 		this.matNo = matNo;
 	}
+	public String getMatNm() {
+		return matNm;
+	}
+	public void setMatNm(String matNm) {
+		this.matNm = matNm;
+	}
 	@Override
 	public String toString() {
-		return "MatBuyReqVO [reqSq=" + reqSq + ", reqDt=" + reqDt + ", reqFl=" + reqFl + ", empNo=" + empNo + ", deSq="
-				+ deSq + ", reqAmt=" + reqAmt + ", matNo=" + matNo + "]";
+		return "MatBuyReqVO [reqSq=" + reqSq + ", reqDt=" + reqDt + ", reqFl=" + reqFl + ", empNo=" + empNo + ", empNm="
+				+ empNm + ", cnt=" + cnt + ", deSq=" + deSq + ", reqAmt=" + reqAmt + ", matNo=" + matNo + ", matNm="
+				+ matNm + "]";
 	}
-	
-	
-	
+
 }

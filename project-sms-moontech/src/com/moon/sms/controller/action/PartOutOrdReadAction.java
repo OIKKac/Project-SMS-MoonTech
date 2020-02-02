@@ -8,32 +8,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.moon.sms.dao.PartDAO;
-import com.moon.sms.dao.PartPdcOrdDAO;
-import com.moon.sms.dto.PartPdcOrdVO;
-import com.moon.sms.dto.PartVO;
+import com.moon.sms.dao.MatBuyReqDAO;
+import com.moon.sms.dto.MatBuyReqVO;
 
-
-
-public class PartPdcOrdListAction implements Action {
+public class PartOutOrdReadAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("START ACTION: PartPdcOrdListAction ========");
+		System.out.println("=============MatBuyReqReadAction");
+		String url = "/mat/matBuyReqRead.jsp";
+		MatBuyReqDAO mbrDao = MatBuyReqDAO.getInstance();
 		
-		String url = "/partPdcOrd/partPdcOrdList.jsp";
-		PartPdcOrdDAO ordDao = PartPdcOrdDAO.getInstance();
+		int reqSq = Integer.parseInt(request.getParameter("reqSq"));
 		
-		List<PartPdcOrdVO> ordList = ordDao.listAll();
+		List<MatBuyReqVO> mbrList = mbrDao.read(reqSq);
 		
-		request.setAttribute("ordList", ordList);
+		request.setAttribute("mbrList", mbrList);
+		System.out.println("mbrList" + mbrList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-		System.out.println("END Action");
 				
 	}
-	
 
 }
-		

@@ -8,32 +8,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.moon.sms.dao.PartDAO;
 import com.moon.sms.dao.PartPdcOrdDAO;
 import com.moon.sms.dto.PartPdcOrdVO;
-import com.moon.sms.dto.PartVO;
 
-
-
-public class PartPdcOrdListAction implements Action {
+public class PartPdcOrdReadAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("START ACTION: PartPdcOrdListAction ========");
+		System.out.println("=============PartPdcOrdReadAction");
+		String url = "/part/partPdcOrdRead.jsp";
 		
-		String url = "/partPdcOrd/partPdcOrdList.jsp";
 		PartPdcOrdDAO ordDao = PartPdcOrdDAO.getInstance();
 		
-		List<PartPdcOrdVO> ordList = ordDao.listAll();
+		int ordSq = Integer.parseInt(request.getParameter("ordSq"));
+		List<PartPdcOrdVO> ordList = ordDao.read(ordSq);
 		
 		request.setAttribute("ordList", ordList);
+		System.out.println("ordList" + ordList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
-		System.out.println("END Action");
-				
+		System.out.println("END Action");		
 	}
-	
 
 }
-		

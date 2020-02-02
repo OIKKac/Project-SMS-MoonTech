@@ -40,7 +40,7 @@ public class PartServlet extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		
+
 		String command = request.getParameter("command");
 		request.setAttribute("command", command);
 
@@ -62,56 +62,69 @@ public class PartServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 
-		ServletContext context = getServletContext();
+		if (request.getContentType().startsWith("multipart/form-data")) {
+			ServletContext context = getServletContext();
 
-		String path = context.getRealPath("picture");
+			String path = context.getRealPath("picture");
 
-		String encType = "UTF-8";
-		int sizeLimit = 20 * 1024 * 1024;
+			String encType = "UTF-8";
+			int sizeLimit = 20 * 1024 * 1024;
 
-		MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType,
-				new DefaultFileRenamePolicy());
-		
-		String command = multi.getParameter("command");
+			MultipartRequest multi = new MultipartRequest(request, path, sizeLimit, encType,
+					new DefaultFileRenamePolicy());
 
-		 if (command.equals("part_write")) {
-			 
-			 System.out.println("====" + multi.getFilesystemName("picture"));
+			String command = multi.getParameter("command");
 
-			PartVO pVo = new PartVO();
+			if (command.equals("part_write")) {
 
-			pVo.setPartSq(Integer.parseInt(multi.getParameter("partSq")));
-			pVo.setPartNm(multi.getParameter("partNm"));
-			pVo.setPartSize(multi.getParameter("partSize"));
-			pVo.setWeight(Integer.parseInt(multi.getParameter("weight")));
-			pVo.setPicture(multi.getFilesystemName("picture"));
-			pVo.setStanPrice(Integer.parseInt(multi.getParameter("stanPrice")));
-			pVo.setMatSq(Integer.parseInt(multi.getParameter("matSq")));
+				System.out.println("====" + multi.getFilesystemName("picture"));
 
-			request.setAttribute("pVo", pVo);
+				PartVO pVo = new PartVO();
 
-			new PartWriteAction().execute(request, response);
-			
-		} else if (command.equals("part_update")) {
+				pVo.setPartSq(Integer.parseInt(multi.getParameter("partSq")));
+				pVo.setPartNm(multi.getParameter("partNm"));
+				pVo.setPartSize(multi.getParameter("partSize"));
+				pVo.setWeight(Integer.parseInt(multi.getParameter("weight")));
+				pVo.setPicture(multi.getFilesystemName("picture"));
+				pVo.setStanPrice(Integer.parseInt(multi.getParameter("stanPrice")));
+				pVo.setMatSq(Integer.parseInt(multi.getParameter("matSq")));
 
-			 System.out.println("====" + multi.getFilesystemName("picture"));
-			
-			PartVO pVo = new PartVO();
+				request.setAttribute("pVo", pVo);
 
-			pVo.setPartSq(Integer.parseInt(multi.getParameter("partSq")));
-			pVo.setPartNm(multi.getParameter("partNm"));
-			pVo.setPartSize(multi.getParameter("partSize"));
-			pVo.setWeight(Integer.parseInt(multi.getParameter("weight")));
-			pVo.setPicture(multi.getFilesystemName("picture"));
-			pVo.setStanPrice(Integer.parseInt(multi.getParameter("stanPrice")));
-			pVo.setMatSq(Integer.parseInt(multi.getParameter("matSq")));
+				new PartWriteAction().execute(request, response);
 
-			request.setAttribute("pVo", pVo);
+			} else if (command.equals("part_update")) {
 
-			new PartUpdateAction().execute(request, response);
+				System.out.println("====" + multi.getFilesystemName("picture"));
 
+				PartVO pVo = new PartVO();
+				
+				 String fileName = multi.getParameter("fileName");
+				 String picture = multi.getFilesystemName("picture");
+				 System.out.println("fileName : " + fileName);
+				 System.out.println("picture : " + picture);
+				 
+
+				pVo.setPartSq(Integer.parseInt(multi.getParameter("partSq")));
+				pVo.setPartNm(multi.getParameter("partNm"));
+				pVo.setPartSize(multi.getParameter("partSize"));
+				pVo.setWeight(Integer.parseInt(multi.getParameter("weight")));
+				pVo.setPicture(multi.getFilesystemName("picture"));
+				pVo.setStanPrice(Integer.parseInt(multi.getParameter("stanPrice")));
+				pVo.setMatSq(Integer.parseInt(multi.getParameter("matSq")));
+				if(picture == null) {
+					pVo.setPicture(fileName);
+				} else {
+					pVo.setPicture(picture);
+				}
+				
+				request.setAttribute("pVo", pVo);
+
+				new PartUpdateAction().execute(request, response);
+
+			}
 		}
-		
+		doGet(request, response);
 	}
 
 }
