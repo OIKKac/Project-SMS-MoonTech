@@ -11,54 +11,78 @@ public class PartVO {
 	private String stanPrice;
 	private int matSq;
 	
-	
+	private String inAmt;
+
 	public int getPartSq() {
 		return partSq;
 	}
+
 	public void setPartSq(int partSq) {
 		this.partSq = partSq;
 	}
+
 	public String getPartNm() {
 		return partNm;
 	}
+
 	public void setPartNm(String partNm) {
 		this.partNm = partNm;
 	}
+
 	public String getPartSize() {
 		return partSize;
 	}
+
 	public void setPartSize(String partSize) {
 		this.partSize = partSize;
 	}
+
 	public String getWeight() {
 		return weight;
 	}
+
 	public void setWeight(String weight) {
 		this.weight = weight;
 	}
+
 	public String getPicture() {
 		return picture;
 	}
+
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+
 	public String getStanPrice() {
 		return stanPrice;
 	}
+
 	public void setStanPrice(String stanPrice) {
 		this.stanPrice = stanPrice;
 	}
+
 	public int getMatSq() {
 		return matSq;
 	}
+
 	public void setMatSq(int matSq) {
 		this.matSq = matSq;
 	}
+
+	public String getInAmt() {
+		return inAmt;
+	}
+
+	public void setInAmt(String inAmt) {
+		this.inAmt = inAmt;
+	}
+
 	@Override
 	public String toString() {
 		return "PartVO [partSq=" + partSq + ", partNm=" + partNm + ", partSize=" + partSize + ", weight=" + weight
-				+ ", picture=" + picture + ", stanPrice=" + stanPrice + ", matSq=" + matSq + "]";
+				+ ", picture=" + picture + ", stanPrice=" + stanPrice + ", matSq=" + matSq + ", inAmt=" + inAmt + "]";
 	}
+
 	
 
 	

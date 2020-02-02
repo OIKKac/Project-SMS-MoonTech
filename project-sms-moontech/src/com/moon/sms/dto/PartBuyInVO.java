@@ -47,7 +47,9 @@ public class PartBuyInVO {
 	private int inAmt;
 	private int partSq;
 	
-	
+	private String empNm;
+	private String purNm;
+	private String CntDe;
 	public int getInSq() {
 		return inSq;
 	}
@@ -90,13 +92,31 @@ public class PartBuyInVO {
 	public void setPartSq(int partSq) {
 		this.partSq = partSq;
 	}
+	public String getEmpNm() {
+		return empNm;
+	}
+	public void setEmpNm(String empNm) {
+		this.empNm = empNm;
+	}
+	public String getPurNm() {
+		return purNm;
+	}
+	public void setPurNm(String purNm) {
+		this.purNm = purNm;
+	}
+	public String getCntDe() {
+		return CntDe;
+	}
+	public void setCntDe(String cntDe) {
+		CntDe = cntDe;
+	}
 	@Override
 	public String toString() {
 		return "PartBuyInVO [inSq=" + inSq + ", inDt=" + inDt + ", empNo=" + empNo + ", purSq=" + purSq + ", deSq="
-				+ deSq + ", inAmt=" + inAmt + ", partSq=" + partSq + "]";
+				+ deSq + ", inAmt=" + inAmt + ", partSq=" + partSq + ", empNm=" + empNm + ", purNm=" + purNm
+				+ ", CntDe=" + CntDe + "]";
 	}
 	
 	
-
 	
 }

@@ -12,7 +12,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.moon.sms.dto.EmpVO;
 import com.moon.sms.dto.MatInVO;
 import com.moon.sms.dto.MatVO;
 import com.moon.sms.util.DBManager;
