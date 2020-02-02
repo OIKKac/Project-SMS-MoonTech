@@ -52,7 +52,7 @@ public class MatInWriteAction implements Action {
 		}
 
 		System.out.println("-END MatInWriteAction----");
-		new MatInWriteFormAction().execute(request, response);
+		new MatInListAction().execute(request, response);
 	}	
 }
 		/*

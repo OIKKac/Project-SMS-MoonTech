@@ -10,28 +10,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.moon.sms.dao.MatDAO;
 import com.moon.sms.dao.MatInDAO;
-import com.moon.sms.dto.MatInVO;
 import com.moon.sms.dto.MatVO;
 
 
-
-
-public class MatInListAction implements Action {
+public class MatInViewAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-Start Action : MatInListAction");
+		System.out.println("-Start Action: MatInViewAction");
 		
-		String url = "/matIn/matInList.jsp";
+		String url = "/matIn/matInView.jsp";
 		MatInDAO mIDao = MatInDAO.getInstance();
 		
-		List<MatInVO> list = mIDao.inListAll();
+		int inSq = Integer.parseInt(request.getParameter("inSq"));
 		
-		request.setAttribute("matInList", list);
+		MatDAO mDao = MatDAO.getInstance();
+		
+		List<MatVO> selectStockList = mIDao.readDe(inSq);
+		
+		request.setAttribute("deList", selectStockList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
-		
-		System.out.println("-End Action");
+		dispatcher.forward(request, response);	
 	}
 }
+

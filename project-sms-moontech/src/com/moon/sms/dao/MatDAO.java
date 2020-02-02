@@ -224,12 +224,10 @@ public class MatDAO {
 	}
 
 
-	@SuppressWarnings("null")
 	public List<MatVO> stockList(){
 		List<MatVO> stockList = new ArrayList<MatVO>();
 		
 		String sql1 = "SELECT DISTINCT MAT_SQ FROM (SELECT * FROM TB_MAT_STOCK ORDER BY STOCK_SQ DESC)";
-		
 		String sql2 = "SELECT * FROM (SELECT * FROM TB_MAT_STOCK ORDER BY ROWNUM DESC) A, TB_MAT B WHERE A.MAT_SQ = ? AND A.MAT_SQ = B.MAT_SQ AND ROWNUM =1";
 		
 		MatVO mVo = null;
@@ -276,6 +274,10 @@ public class MatDAO {
 		return stockList;
 		
 	}
+	
+	
+
+	
 		/*
 	public ArrayList<MatVO> searchMatAjax(String value){
         Connection conn = null;

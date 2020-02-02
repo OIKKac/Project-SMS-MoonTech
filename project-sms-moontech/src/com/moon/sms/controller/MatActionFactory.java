@@ -4,6 +4,7 @@ package com.moon.sms.controller;
 import com.moon.sms.controller.action.Action;
 import com.moon.sms.controller.action.MatDeleteAction;
 import com.moon.sms.controller.action.MatInListAction;
+import com.moon.sms.controller.action.MatInViewAction;
 import com.moon.sms.controller.action.MatInWriteAction;
 import com.moon.sms.controller.action.MatInWriteFormAction;
 import com.moon.sms.controller.action.MatListAction;
@@ -53,6 +54,8 @@ public class MatActionFactory {
 			action = new MatInWriteAction();
 		}else if (command.equals("mat_in_list")) {
 			action = new MatInListAction();
+		}else if (command.equals("mat_in_view")) {
+			action = new MatInViewAction();
 		}
 		
 		

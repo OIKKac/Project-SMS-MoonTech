@@ -28,23 +28,21 @@
 			<thead>
 				<tr>
 					<td>순번</td>
-					<td>입고번호</td>
-					<td>작성자명</td>
-					<td>거래처명</td>
-					<td>작성일</td>
-					<td>입고품종류</td>		
+					<td>사진</td>
+					<td>제품번호</td>
+					<td>제품명</td>
+					<td>입고수량</td>		
 				</tr>
 			</thead>
 			
 			<tbody>
-				<c:forEach items = "${matInList}" var = "matIn" varStatus="status">
+				<c:forEach items = "${deList}" var = "de" varStatus="status">
 					<tr>
 						<td>${status.count}</td>
-						<td><a href="mat.do?command=mat_in_view&inSq=${matIn.inSq}">${matIn.inSq}</a></td>
-						<td>${matIn.empNm}</td>
-						<td>${matIn.purNm}</td>
-						<td><fmt:formatDate value="${matIn.inDt}" pattern="yyyy.MM.dd" /></td>
-						<td>${matIn.cntDe}개</td>
+						<td>${de.picture}</td>
+						<td>${de.matSq}</td>
+						<td>${de.matNm}</td>
+						<td>${de.inAmt}개</td>
 					</tr>
 				</c:forEach>
 			</tbody>

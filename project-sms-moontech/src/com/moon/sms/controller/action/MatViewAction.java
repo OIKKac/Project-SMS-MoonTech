@@ -30,3 +30,4 @@ public class MatViewAction implements Action {
 	}
 }
 
+//순번 picture matsq matNm inAmt 

@@ -9,6 +9,9 @@ public class MatVO {
 	private String stanPrice;
 	private String weight;
 	private String stockAmt;
+	private String inAmt;
+	private String outAmt;
+	
 	public int getMatSq() {
 		return matSq;
 	}
@@ -51,12 +54,26 @@ public class MatVO {
 	public void setStockAmt(String stockAmt) {
 		this.stockAmt = stockAmt;
 	}
+	public String getInAmt() {
+		return inAmt;
+	}
+	public void setInAmt(String inAmt) {
+		this.inAmt = inAmt;
+	}
+	public String getOutAmt() {
+		return outAmt;
+	}
+	public void setOutAmt(String outAmt) {
+		this.outAmt = outAmt;
+	}
 	@Override
 	public String toString() {
 		return "MatVO [matSq=" + matSq + ", matNm=" + matNm + ", matSize=" + matSize + ", picture=" + picture
-				+ ", stanPrice=" + stanPrice + ", weight=" + weight + ", stockAmt=" + stockAmt + "]";
+				+ ", stanPrice=" + stanPrice + ", weight=" + weight + ", stockAmt=" + stockAmt + ", inAmt=" + inAmt
+				+ ", outAmt=" + outAmt + "]";
 	}
-		
+	
+	
 	
 	
 		

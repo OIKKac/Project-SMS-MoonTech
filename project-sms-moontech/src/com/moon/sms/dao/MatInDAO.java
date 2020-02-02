@@ -12,6 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.moon.sms.dto.EmpVO;
 import com.moon.sms.dto.MatInVO;
 import com.moon.sms.dto.MatVO;
 import com.moon.sms.util.DBManager;
@@ -157,20 +158,85 @@ public class MatInDAO {
 			
 	
 	
-	public void read(int inSq) {
+	public MatInVO read(int inSq) {
+		System.out.println("-Start Method: read");
 		
-
-	}
-
-	public void delete(int inSq) {
+		String sql = "";
 		
+		MatInVO mIVo = null;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, inSq);
+			rs = pstmt.executeQuery();
+		
+			if (rs.next()) {
+				mIVo = new MatInVO();
+				mIVo.setMatSq(rs.getInt("MAT_SQ"));
+				mIVo.setInAmt(rs.getInt("IN_AMT"));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}
+		return mIVo;	
 	}
 	
+	public List<MatVO> readDe(int inSq){
+		System.out.println("-Start Method: readDe");
+		
+		String sqlReadDe = "SELECT A.mat_sq, A.MAT_NM, A.PICTURE, B.IN_SQ, B.IN_AMT FROM TB_MAT A, TB_MAT_IN_DE B WHERE B.MAT_SQ = A.MAT_SQ AND B.IN_SQ = ?";
+
+		List<MatVO> selectStockList = new ArrayList<MatVO>();
+		MatVO mVo = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sqlReadDe);
+			
+			pstmt.setInt(1, inSq);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mVo = new MatVO();
+				
+				mVo.setMatSq(rs.getInt("MAT_SQ")); 
+				mVo.setMatNm(rs.getString("MAT_NM")); 
+				mVo.setPicture(rs.getString("PICTURE")); 
+				mVo.setInAmt(rs.getString("IN_AMT")); 
+				
+				selectStockList.add(mVo);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}		
+		
+		System.out.println("-End ");	
+		
+		return selectStockList;
+	}
+		
+		
+		
+		
 	public List<MatInVO> inListAll() {
 		System.out.println("-Start Method : inListAll");
 		
-		String sqlList = "SELECT * FROM TB_MAT_IN ORDER BY IN_SQ DESC";
-		String sqlCountDe = "SELECT COUNT(C.IN_SQ) AS CNT_DE FROM TB_MAT_IN_DE C, TB_MAT_IN P WHERE C.IN_SQ = ?";
+		String sqlList = "SELECT c.*, p1.EMP_NM, P2.PUR_NM FROM TB_MAT_IN C, TB_EMP P1, TB_PURCHASING P2 WHERE c.emp_no = p1.emp_no AND c.pur_sq = p2.pur_sq ORDER BY IN_SQ DESC" ;
+		String sqlCountDe = "SELECT COUNT(C.IN_SQ) AS CNT_DE FROM TB_MAT_IN_DE C, TB_MAT_IN P WHERE C.IN_SQ = P.IN_SQ AND C.IN_SQ = ?";
+		MatInVO mIVo = null;
 		
 		List<MatInVO> list = new ArrayList<MatInVO>();
 		Connection conn = null;
@@ -185,7 +251,8 @@ public class MatInDAO {
 			pstmt = conn.prepareStatement(sqlCountDe);
 			
 			while (rs1.next()) {
-				MatInVO mIVo = new MatInVO();
+				
+				 mIVo = new MatInVO();
 				
 				int inSq = rs1.getInt("IN_SQ");
 				pstmt.setInt(1, inSq);
@@ -193,9 +260,10 @@ public class MatInDAO {
 				
 					if(rs2.next()) {
 					mIVo.setInSq(inSq);
-					mIVo.setInDT(rs1.getDate("IN_DT")); 
+					mIVo.setInDt(rs1.getDate("IN_DT")); 
 					mIVo.setEmpNo(rs1.getInt("EMP_NO"));
-					mIVo.setPurSq(rs1.getInt("PUR_SQ"));
+					mIVo.setEmpNm(rs1.getString("EMP_NM"));
+					mIVo.setPurNm(rs1.getString("PUR_NM"));
 					
 					mIVo.setCntDe(rs2.getInt("CNT_DE"));
 					
@@ -207,7 +275,7 @@ public class MatInDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBManager.closeForStock(conn, stmt, rs1, rs2);
+			DBManager.close(conn, stmt, rs1);
 		}
 		System.out.println("List : "+ list);
 		System.out.println("-End Method");
