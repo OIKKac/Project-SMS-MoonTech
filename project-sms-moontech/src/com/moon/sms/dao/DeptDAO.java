@@ -34,8 +34,6 @@ public class DeptDAO {
 		
 		return conn;		
 	}
-	
-	
 
 	public void regist(DeptVO dVo)  {
 		String sql = "insert into tb_dept("

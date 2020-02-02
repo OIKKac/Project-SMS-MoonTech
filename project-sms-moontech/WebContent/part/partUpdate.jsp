@@ -12,7 +12,7 @@
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
             <div class="card-header border-0">
-              <h3 class="mb-0"> 부품 등록</h3>
+              <h3 class="mb-0"> 부품 수정</h3>
             </div>
 				<div class="card-body">
 				<form method= "post"  action = "part.do" enctype="multipart/form-data">
@@ -65,7 +65,7 @@
 									</div>
 									<div class="col-lg-3">
 										<div class="form-group">
-										<input type="text" id="filename" class="form-control" disabled />
+										<input type="text" id="filename" class="form-control" value="${part.picture}"  disabled />
 										</div>
 									</div>
 								<div class="col-lg-6">

@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.moon.sms.dao.MatBuyReqDAO;
 import com.moon.sms.dao.MatDAO;
+import com.moon.sms.dao.PartBuyReqDAO;
+import com.moon.sms.dao.PartOutOrdDAO;
+import com.moon.sms.dao.PartPdcOrdDAO;
 import com.moon.sms.dto.MatVO;
 
 /**
@@ -34,6 +38,26 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String url = "main.jsp";
+		
+		// Get MatBuyReq Count
+		MatBuyReqDAO mbrDao = MatBuyReqDAO.getInstance();
+		int matBuyReqCount = mbrDao.countMatBuyReqSq();
+		request.setAttribute("matBuyReqCount", matBuyReqCount);
+		System.out.println("matBuyReqCount : " + matBuyReqCount);
+		
+		/*
+		 * // GET PartBuyReq Count PartBuyReqDAO pbrDao = PartBuyReqDAO.getInstance();
+		 * int partBuyReqCount = pbrDao.countPartBuyReq();
+		 * request.setAttribute("partBuyReqCount", partBuyReqCount);
+		 * 
+		 * // GET PartPdcOrd Count PartPdcOrdDAO pdoDao = PartPdcOrdDAO.getInstance();
+		 * int partPdcOrdCount = pdoDao.countPartPdcOrd();
+		 * request.setAttribute("partPdcOrdCount", partPdcOrdCount);
+		 * 
+		 * // GET PartOutOrd Count PartOutOrdDAO pooDao = PartOutOrdDAO.getInstance();
+		 * int partOutOrdCount = pooDao.countPartOutOrd();
+		 * request.setAttribute("partOutOrdCount", partOutOrdCount);
+		 */
 		
 		MatDAO mDao = MatDAO.getInstance();
 		List<MatVO> matList = mDao.listAll();

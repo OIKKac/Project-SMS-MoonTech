@@ -26,6 +26,7 @@ public class MatUpdateFormAction implements Action {
 		MatVO mVo = mDao.read(matSq);
 		
 		request.setAttribute("mat", mVo);
+		System.out.println("mVo : " + mVo);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

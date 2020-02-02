@@ -70,7 +70,7 @@ public class FileDisplayServlet extends HttpServlet {
       System.out.println(file);
       byte b[] = new byte[(int)file.length()];
       
-      response.setHeader("Content-Disposition","attachement:filename="+new String(dFileName.getBytes("UTF-8"))+";");
+      response.setHeader("Content-Disposition","attachement:fileName="+new String(dFileName.getBytes("UTF-8"))+";");
       
       if(file.isFile()){
          

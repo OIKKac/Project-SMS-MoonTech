@@ -1,14 +1,59 @@
 package com.moon.sms.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import com.moon.sms.dto.PartPdcOrdVO;
+import com.moon.sms.util.DBManager;
 
-public interface PartPdcOrdDAO {
+public class PartPdcOrdDAO {
 
-	public void regist(PartPdcOrdVO pPOVo) throws Exception;
-
-	public PartPdcOrdVO read(int ordSq) throws Exception;
-
-	public void delete(int ordSq) throws Exception;
+	private static PartPdcOrdDAO instance = new PartPdcOrdDAO();
+	public static  PartPdcOrdDAO getInstance() {
+		return instance;
+	}
 	
+	public Connection getConnection() throws Exception {
+		Connection conn = null;
+		Context initContext = new InitialContext();
+		Context envContext  = (Context)initContext.lookup("java:/comp/env");
+		DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");
+		conn = ds.getConnection();
+		
+		return conn;		
+	}
 	
+	public int countPartPdcOrd() {
+		
+		String sql = "SELECT COUNT(*) " + 
+				"FROM TB_PART_PDC_ORD" + 
+				"WHERE ORD_FL = '0'";
+		
+		int count = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {				
+				count = rs.getInt("COUNT(*)");								
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}	
+		return count;
+	}
+
 }

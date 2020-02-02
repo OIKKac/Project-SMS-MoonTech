@@ -15,13 +15,13 @@
               <h3 class="mb-0"> 재료 수정</h3>
             </div>
 	<div class="card-body">
-	<form method="post" name="frm" action="mat.do">
+	<form method="post" name="frm" action="mat.do"  enctype="multipart/form-data">
 		<input type = "hidden" name = "command" value = "mat_update">		
 		<input type = "hidden" name = "matSq"  value = "${mat.matSq}">		
 				<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group">
-										<label class="form-control-label" for="input-email">재료번호</label>
+										<label class="form-control-label" for="input-email">재료 번호</label>
 										<input type="text" value ="${mat.matSq}" class="form-control form-control-alternative" disabled />
 									</div>
 								</div>
@@ -58,11 +58,14 @@
   											 <span class="btn-inner--text">사진 등록하기</span>
 											</button>
 											<input type="file" value="${mat.picture}" name="picture" id="file" onchange="changeValue(this)" style="display:none;"/>
+										<c:if test = "${mat.picture ne null}" >
+												<img src="displayFile?fileName=${mat.picture}">
+										</c:if>
 										</div>
 									</div>
 									<div class="col-lg-3">
 										<div class="form-group">
-										<input type="text" id="filename" class="form-control" disabled />
+										<input type="text" id="fileName" name="fileName" class="form-control"  value="${mat.picture}"  disabled />
 										</div>
 									</div>
 								<div class="col-lg-6">
@@ -101,7 +104,7 @@ $('#file').click();
 });
 
 function changeValue(obj){
-	document.getElementById("filename").value =obj.value;
+	document.getElementById("fileName").value =obj.value;
  }
 
 </script>

@@ -15,7 +15,7 @@
               <h3 class="mb-0"> 재료 등록</h3>
             </div>
 	<div class="card-body">
-	<form method= "post"  action = "mat.do">
+	<form method= "post"  action = "mat.do"  enctype="multipart/form-data" >
 		<input type = "hidden" name = "command" value = "mat_write">		
 		<input type = "hidden" name = "matSq"  value = "${matSq}">		
 				<div class="row">

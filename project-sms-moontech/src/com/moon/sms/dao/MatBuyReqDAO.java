@@ -30,6 +30,35 @@ public class MatBuyReqDAO {
 		return conn;		
 	}
 	
+	public int countMatBuyReqSq() {
+		
+		int count = 0;
+
+		String sql = "SELECT COUNT(*) AS COUNT " + 
+				"FROM TB_MAT_BUY_REQ " + 
+				"WHERE REQ_FL = '0'";
+		
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBManager.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {				
+				count = rs.getInt("COUNT");		
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, pstmt, rs);
+		}	
+		return count;
+	}
+	
 	public int nextvalMatBuyReqSq() {
 		
 		String sql = "SELECT * FROM "
