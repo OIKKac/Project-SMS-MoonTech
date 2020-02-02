@@ -275,7 +275,36 @@ public class MatDAO {
 		
 	}
 	
-	
+	public List<MatVO> selectNameList(String selectNm) {
+		String sql = "SELECT * FROM TB_MAT " + 
+				"where mat_nm like '%" + selectNm +"%'" + 
+				"ORDER BY MAT_SQ DESC";
+		List<MatVO> list = new ArrayList<MatVO>();
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBManager.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				MatVO mVo = new MatVO();
+				mVo.setMatSq(rs.getInt("MAT_SQ"));
+				mVo.setMatNm(rs.getString("MAT_NM"));
+				mVo.setMatSize(rs.getString("MAT_SIZE"));
+				mVo.setStanPrice(rs.getString("STAN_PRICE"));
+				mVo.setWeight(rs.getString("WEIGHT"));
+				mVo.setPicture(rs.getString("PICTURE"));	
+				
+				list.add(mVo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBManager.close(conn, stmt, rs);
+		}
+		return list;
+	}
 
 	
 		/*
