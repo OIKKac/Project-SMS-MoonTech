@@ -154,30 +154,30 @@
           
           <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link " href="mat.do?command=mat_buy_req">
+            <a class="nav-link " href="mat.do?command=mat_buy_req_write_form">
               <i class="ni ni-cart text-red"></i> 구매요청
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="mat.do?command=mat_out_ord">
+            <a class="nav-link" href="mat.do?command=mat_out_ord_write_form">
               <i class="ni ni-curved-next text-cyan"></i> 출고지시
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="mat.do?command=mat_buy">
+            <a class="nav-link" href="mat.do?command=mat_buy_write_form">
               <i class="ni ni-money-coins text-pink"></i> 구매
             </a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="mat.do?command=mat_in">
+            <a class="nav-link" href="mat.do?command=mat_in_write_form">
               <i class="ni ni-spaceship text-blue"></i> 입고
             </a>
           </li>
           
           
           <li class="nav-item">
-            <a class="nav-link" href="mat.do?command=mat_out">
+            <a class="nav-link" href="part.do?command=part_out_ord_write_form">
               <i class="ni ni-delivery-fast text-orange"></i> 출고
             </a>
           </li>

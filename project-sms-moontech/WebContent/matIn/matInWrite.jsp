@@ -54,7 +54,23 @@
 									value="${matInSq}" disabled>
 							</div>
 						</div>
-						<div class="col-lg-4">
+						<div class="row">
+								<div class="col-lg-8">
+									<div class="form-group">
+										<label class="form-control-label" for="input-username">거래처</label>
+										<input type="text" name="purNm"   id="purNm"
+											class="form-control form-control-alternative">
+										<input type="hidden" name="purSq" id="purSq"/>
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="form-group">
+									<br>
+										<input type="button" value = "검색" onclick = "openPopUp()"  class="btn btn-icon btn-3 btn-primary"/>											
+									</div>
+								</div>
+							</div>	
+				<!-- 		<div class="col-lg-4">
 							<div class="form-group">
 								<label class="form-control-label" for="input-email">거래처</label>
 								<input type="email" id="input-email"
@@ -65,9 +81,9 @@
 
 							<div style="vertical-align: left;">
 								<br> <label class="form-control-label" for="input-email"></label>
-								<a href="#!" class="btn btn-sm btn-primary">검색</a>
+								<input type="button" value = "검색" onclick = "openPopUp()"  class="btn btn-icon btn-3 btn-primary"/>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -313,6 +329,38 @@
 	});
 </script>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(function () {
 
+$('#btn-upload').click(function (e) {
+
+e.preventDefault();
+
+$('#file').click();
+
+});
+});
+
+function changeValue(obj){
+	document.getElementById("filename").value =obj.value;
+}
+
+function openPopUp() {
+    // window.name = "부모창 이름"; 
+    window.name = "parentForm";
+    // window.open("open할 window", "자식창 이름", "팝업창 옵션");
+    var width = "800";
+    var height = "500";
+    var top = (window.screen.height - height) / 2;
+    var left = (window.screen.width - width) / 2;
+    var url = "mat.do?command=pur_select_form";
+    var title = "거래처입력";
+    var status = "toolbar=no,directories=no,scrollbars=no,resizable=no,status=no,menubar=no,width="
+          + width + ",height=" + height + ",top=" + top + ",left=" + left;
+
+    window.open(url, title, status);
+ }
+</script>
 
 <jsp:include page="/include/footer.jsp"></jsp:include>

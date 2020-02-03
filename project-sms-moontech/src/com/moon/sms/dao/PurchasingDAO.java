@@ -12,5 +12,5 @@ public interface PurchasingDAO {
 	public void modify(PurchasingVO purVO) throws Exception;
 	
 	public void delete(int purSq) throws Exception;
-	
+	c
 }

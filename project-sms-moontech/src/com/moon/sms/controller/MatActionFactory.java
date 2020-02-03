@@ -2,12 +2,16 @@ package com.moon.sms.controller;
 
 
 import com.moon.sms.controller.action.Action;
+import com.moon.sms.controller.action.MatBuyReqWriteAction;
+import com.moon.sms.controller.action.MatBuyReqWriteFormAction;
 import com.moon.sms.controller.action.MatDeleteAction;
 import com.moon.sms.controller.action.MatInListAction;
 import com.moon.sms.controller.action.MatInViewAction;
 import com.moon.sms.controller.action.MatInWriteAction;
 import com.moon.sms.controller.action.MatInWriteFormAction;
 import com.moon.sms.controller.action.MatListAction;
+import com.moon.sms.controller.action.MatSelectAction;
+import com.moon.sms.controller.action.MatSelectFormAction;
 import com.moon.sms.controller.action.MatUpdateAction;
 import com.moon.sms.controller.action.MatUpdateFormAction;
 import com.moon.sms.controller.action.MatViewAction;
@@ -47,6 +51,20 @@ public class MatActionFactory {
 		} else if (command.equals("mat_delete")) {
 			action = new MatDeleteAction();
 		}
+		
+		else if (command.equals("mat_select_form")) {
+			action = new MatSelectFormAction();
+		} else if (command.equals("mat_select")) {
+			action = new MatSelectAction();
+		}
+		else if (command.equals("mat_buy_req_write_form")) {
+			action = new MatBuyReqWriteFormAction();
+		}
+		else if (command.equals("mat_buy_req_write")) {
+			action = new MatBuyReqWriteAction();
+		}
+		
+		
 		//mat_in
 		else if (command.equals("mat_in_write_form")) {
 			action = new MatInWriteFormAction();
@@ -58,8 +76,6 @@ public class MatActionFactory {
 			action = new MatInViewAction();
 		}else if (command.equals("mat_buy_list")) {
 			action = new MatListAction();
-
-		
 		}
 		
 		return action;
